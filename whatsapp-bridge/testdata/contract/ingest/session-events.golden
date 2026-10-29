@@ -1,0 +1,16 @@
+== chats
+== messages
+== reactions
+== polls
+== poll_votes
+== event_responses
+== labels
+== chat_labels
+== bridge_meta
+{"key":"fts_enabled","value":"1"}
+{"key":"media_roots","value":"[\"<DIR>/store\"]"}
+== events
+{"type":"session","state":"connected","timestamp":"<NOW>"}
+{"type":"session","content":"connection lost, reconnecting","state":"disconnected","timestamp":"<NOW>"}
+{"type":"session","content":"another client connected with this session (is a second bridge running?); stop it and restart this bridge","state":"stream_replaced","timestamp":"<NOW>"}
+{"type":"presence","chat_jid":"79990000002@s.whatsapp.net","state":"offline","timestamp":"<NOW>"}

@@ -1,0 +1,9 @@
+signature(contract-secret, 1748779200, body) = sha256=87f27199071aca7d5e0911fa6609e4b1b944ede6c521427be8a9098d85be8cff
+signature(other-secret, 1748779200, body) = sha256=67d6d3c9924d8bb47c5c160becfa265e62667b99cc7cc3868eefac28e8c722d8
+signature(contract-secret, 1748779201, body) = sha256=17318bd01b2a6bdfed1604ba04ab66b8ddd7e247bd0230b3ec271b0986692fb7
+delivery: POST /hook
+headers: Accept-Encoding, Content-Length, Content-Type, User-Agent, X-Bridge-Signature, X-Bridge-Timestamp
+Content-Type: application/json
+body: {"type":"message","chat_jid":"c@g.us","content":"hi","timestamp":"2025-06-01T12:00:00Z"}
+X-Bridge-Signature = signWebhook(secret, X-Bridge-Timestamp, body)
+redirect: error "HTTP 302", requests to the target 0

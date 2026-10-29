@@ -1,0 +1,37 @@
+# systemd user service for one of several WhatsApp accounts: one bridge per
+# account, each with its own directory and port.
+#
+# Install with `make install-account-service` (fills in @BRIDGE_DIR@). For an
+# account called "work":
+#   1. ~/.config/whatsapp-bridge/work.env with at least
+#        WHATSAPP_BRIDGE_ADDR=127.0.0.1:8081
+#   2. link it interactively first:
+#        WHATSAPP_BRIDGE_DIR=~/.local/share/whatsapp-bridge/work WHATSAPP_BRIDGE_ADDR=127.0.0.1:8081 ./whatsapp-bridge
+#   3. systemctl --user enable --now whatsapp-bridge@work
+# Its store is ~/.local/share/whatsapp-bridge/work/store; list it in the MCP
+# server's WHATSAPP_ACCOUNTS.
+
+[Unit]
+Description=WhatsApp bridge for account %i
+Documentation=https://github.com/Roman-Andr/whatsapp-mcp
+StartLimitIntervalSec=600
+StartLimitBurst=5
+
+[Service]
+Type=simple
+WorkingDirectory=@BRIDGE_DIR@
+ExecStart=@BRIDGE_DIR@/whatsapp-bridge
+Environment=WHATSAPP_BRIDGE_DIR=%h/.local/share/whatsapp-bridge/%i
+EnvironmentFile=%h/.config/whatsapp-bridge/%i.env
+Restart=on-failure
+RestartSec=15
+KillSignal=SIGINT
+TimeoutStopSec=30
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=whatsapp-bridge-%i
+NoNewPrivileges=yes
+UMask=0077
+
+[Install]
+WantedBy=default.target

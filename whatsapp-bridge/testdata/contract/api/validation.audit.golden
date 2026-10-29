@@ -1,0 +1,104 @@
+{"time":"<NOW>","endpoint":"send","success":false,"result":"Recipient is required"}
+{"time":"<NOW>","endpoint":"send","text":"hi","success":false,"result":"Recipient is required"}
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","success":false,"result":"Message or media path is required"}
+{"time":"<NOW>","endpoint":"send","chat":"not a number","text":"hi","success":false,"result":"Error parsing recipient: recipient \"not a number\" is neither a JID nor a phone number"}
+{"time":"<NOW>","endpoint":"send","chat":"+","text":"hi","success":false,"result":"Error parsing recipient: empty recipient"}
+{"time":"<NOW>","endpoint":"send","chat":"bad@@jid","text":"hi","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","text":"[file relative.jpg]","success":false,"result":"media path must be absolute: relative.jpg"}
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","text":"[file missing.jpg]","success":false,"result":"media file not found: <DIR>/store/files/missing.jpg"}
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","text":"[file outside.jpg]","success":false,"result":"refusing to send <DIR>/outside.jpg: it is outside the media roots (<DIR>/store). Copy it into one of them, or add its directory to WHATSAPP_MEDIA_ROOTS"}
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","text":"[file .hidden.jpg]","success":false,"result":"refusing to send <DIR>/store/files/.hidden.jpg: hidden files and directories cannot be sent"}
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","target_id":"NOPE","text":"hi","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"react","success":false,"result":"chat_jid and message_id are required"}
+{"time":"<NOW>","endpoint":"react","chat":"79990000002@s.whatsapp.net","success":false,"result":"chat_jid and message_id are required"}
+{"time":"<NOW>","endpoint":"react","chat":"79990000002@s.whatsapp.net","target_id":"NOPE","text":"👍","success":false,"result":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}
+{"time":"<NOW>","endpoint":"poll","text":" []","success":false,"result":"recipient is required"}
+{"time":"<NOW>","endpoint":"poll","chat":"79990000002","text":" []","success":false,"result":"question is required"}
+{"time":"<NOW>","endpoint":"poll","chat":"79990000002","text":"Q [A]","success":false,"result":"a poll needs 2 to 12 options, got 1"}
+{"time":"<NOW>","endpoint":"poll","chat":"79990000002","text":"Q [A /  ]","success":false,"result":"poll options must not be empty"}
+{"time":"<NOW>","endpoint":"poll","chat":"79990000002","text":"Q [A / A]","success":false,"result":"duplicate poll option \"A\""}
+{"time":"<NOW>","endpoint":"poll","chat":"79990000002","text":"Q [A / B]","success":false,"result":"selectable_count must be between 0 (any number) and 2"}
+{"time":"<NOW>","endpoint":"poll","chat":"bad!","text":"Q [A / B]","success":false,"result":"Error parsing recipient: recipient \"bad!\" is neither a JID nor a phone number"}
+{"time":"<NOW>","endpoint":"location","text":"[location] 0.000000,0.000000","success":false,"result":"recipient is required"}
+{"time":"<NOW>","endpoint":"location","chat":"79990000002","text":"[location] 91.000000,0.000000","success":false,"result":"latitude must be between -90 and 90"}
+{"time":"<NOW>","endpoint":"location","chat":"79990000002","text":"[location] 0.000000,-181.000000","success":false,"result":"longitude must be between -180 and 180"}
+{"time":"<NOW>","endpoint":"location","chat":"bad!","text":"[location] 1.000000,2.000000","success":false,"result":"Error parsing recipient: recipient \"bad!\" is neither a JID nor a phone number"}
+{"time":"<NOW>","endpoint":"edit","success":false,"result":"chat_jid, message_id and message are required"}
+{"time":"<NOW>","endpoint":"edit","chat":"79990000002@s.whatsapp.net","target_id":"OUT1","success":false,"result":"chat_jid, message_id and message are required"}
+{"time":"<NOW>","endpoint":"edit","chat":"79990000002@s.whatsapp.net","target_id":"NOPE","text":"x","success":false,"result":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}
+{"time":"<NOW>","endpoint":"edit","chat":"79990000002@s.whatsapp.net","target_id":"IN1","text":"x","success":false,"result":"Message IN1 was sent by someone else; only your own messages can be edited"}
+{"time":"<NOW>","endpoint":"edit","chat":"79990000002@s.whatsapp.net","target_id":"OUTDEL","text":"x","success":false,"result":"Message OUTDEL was already deleted"}
+{"time":"<NOW>","endpoint":"edit","chat":"79990000002@s.whatsapp.net","target_id":"OUTIMG","text":"x","success":false,"result":"Message OUTIMG is a image; only text messages can be edited"}
+{"time":"<NOW>","endpoint":"edit","chat":"79990000002@s.whatsapp.net","target_id":"OUTPOLL","text":"x","success":false,"result":"Message OUTPOLL is a poll; only text messages can be edited"}
+{"time":"<NOW>","endpoint":"edit","chat":"79990000002@s.whatsapp.net","target_id":"OUTOLD","text":"x","success":false,"result":"Message OUTOLD was sent 1h0m0s ago; WhatsApp only allows edits within 20m0s"}
+{"time":"<NOW>","endpoint":"delete","success":false,"result":"chat_jid and message_id are required"}
+{"time":"<NOW>","endpoint":"delete","chat":"79990000002@s.whatsapp.net","target_id":"NOPE","success":false,"result":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}
+{"time":"<NOW>","endpoint":"delete","chat":"79990000002@s.whatsapp.net","target_id":"OUTDEL","success":false,"result":"Message OUTDEL was already deleted"}
+{"time":"<NOW>","endpoint":"delete","chat":"79990000002@s.whatsapp.net","target_id":"IN1","success":false,"result":"Message IN1 was sent by someone else; in a direct chat only your own messages can be deleted"}
+{"time":"<NOW>","endpoint":"delete","chat":"120363000000000001@g.us","target_id":"G1","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"read","success":false,"result":"chat_jid is required"}
+{"time":"<NOW>","endpoint":"read","chat":"79990000009@s.whatsapp.net","success":false,"result":"No incoming messages stored for 79990000009@s.whatsapp.net"}
+{"time":"<NOW>","endpoint":"read","chat":"79990000002@s.whatsapp.net","target_id":"NOPE","success":false,"result":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}
+{"time":"<NOW>","endpoint":"read","chat":"79990000002@s.whatsapp.net","target_id":"OUT1","success":false,"result":"Nothing to mark as read: the messages are your own"}
+{"time":"<NOW>","endpoint":"read","chat":"79990000004@s.whatsapp.net","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"read","chat":"120363000000000003@g.us","success":false,"result":"Cannot mark GNOSENDER as read: their senders were not recorded"}
+{"time":"<NOW>","endpoint":"typing","success":false,"result":"chat_jid is required"}
+{"time":"<NOW>","endpoint":"typing","chat":"79990000002","text":"dancing","success":false,"result":"unknown typing state \"dancing\" (want composing, recording or paused)"}
+{"time":"<NOW>","endpoint":"typing","chat":"bad!","success":false,"result":"Error parsing chat: recipient \"bad!\" is neither a JID nor a phone number"}
+{"time":"<NOW>","endpoint":"logout","success":false,"result":"logout unlinks this device from the account; send {\"confirm\": true}"}
+{"time":"<NOW>","endpoint":"logout","success":false,"result":"logout unlinks this device from the account; send {\"confirm\": true}"}
+{"time":"<NOW>","endpoint":"group_create","text":" []","success":false,"result":"name is required"}
+{"time":"<NOW>","endpoint":"group_create","text":"xxxxxxxxxxxxxxxxxxxxxxxxxx [79990000002]","success":false,"result":"group name has 26 characters; WhatsApp allows 25"}
+{"time":"<NOW>","endpoint":"group_create","text":"Depot []","success":false,"result":"participants are required"}
+{"time":"<NOW>","endpoint":"group_create","text":"Depot [bad!]","success":false,"result":"participant \"bad!\": recipient \"bad!\" is neither a JID nor a phone number"}
+{"time":"<NOW>","endpoint":"group_create","text":"Depot [120363000000000001@g.us]","success":false,"result":"participant \"120363000000000001@g.us\" is a group"}
+{"time":"<NOW>","endpoint":"group_leave","success":false,"result":"\"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"group_participants","text":" ","success":false,"result":"\"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"group_participants","chat":"120363000000000001@g.us","text":"kick 79990000003","success":false,"result":"unknown action \"kick\" (want add, remove, promote or demote)"}
+{"time":"<NOW>","endpoint":"group_participants","chat":"120363000000000001@g.us","text":"add ","success":false,"result":"participants are required"}
+{"time":"<NOW>","endpoint":"group_settings","text":"{\"chat_jid\":\"\"}","success":false,"result":"\"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"group_settings","chat":"120363000000000001@g.us","text":"{\"chat_jid\":\"120363000000000001@g.us\"}","success":false,"result":"nothing to change: give name, description, announce_only, locked or join_approval"}
+{"time":"<NOW>","endpoint":"group_settings","chat":"120363000000000001@g.us","text":"{\"chat_jid\":\"120363000000000001@g.us\",\"name\":\"\"}","success":false,"result":"group name must have 1 to 25 characters"}
+{"time":"<NOW>","endpoint":"group_join","success":false,"result":"invite must be a https://chat.whatsapp.com/\u003ccode\u003e link or its code"}
+{"time":"<NOW>","endpoint":"group_join","text":"https://example.com/AbCdEf","success":false,"result":"invite must be a https://chat.whatsapp.com/\u003ccode\u003e link or its code"}
+{"time":"<NOW>","endpoint":"chat","success":false,"result":"chat_jid is required"}
+{"time":"<NOW>","endpoint":"chat","chat":"bad!","text":"archive","success":false,"result":"Invalid chat: recipient \"bad!\" is neither a JID nor a phone number"}
+{"time":"<NOW>","endpoint":"chat","chat":"79990000002","text":"explode","success":false,"result":"unknown action \"explode\" (want archive, unarchive, pin, unpin, mute, unmute or delete)"}
+{"time":"<NOW>","endpoint":"chat","chat":"79990000002","text":"mute","success":false,"result":"mute_hours must not be negative (0 mutes forever)"}
+{"time":"<NOW>","endpoint":"label_chat","text":" false","success":false,"result":"chat_jid is required"}
+{"time":"<NOW>","endpoint":"label_chat","chat":"bad!","text":"Customers false","success":false,"result":"Invalid chat: recipient \"bad!\" is neither a JID nor a phone number"}
+{"time":"<NOW>","endpoint":"label_chat","chat":"79990000002","text":" false","success":false,"result":"label is required"}
+{"time":"<NOW>","endpoint":"label_chat","chat":"79990000002","text":"Nope false","success":false,"result":"no label \"Nope\" (list_labels shows the existing ones; labels exist on WhatsApp Business accounts)"}
+{"time":"<NOW>","endpoint":"label_edit","success":false,"result":"name is required"}
+{"time":"<NOW>","endpoint":"label_edit","text":"VIP","success":false,"result":"color must be 0 to 19 (WhatsApp's label palette)"}
+{"time":"<NOW>","endpoint":"label_edit","success":false,"result":"label_id is required to delete a label"}
+{"time":"<NOW>","endpoint":"block","text":"false","success":false,"result":"jid is required"}
+{"time":"<NOW>","endpoint":"block","chat":"bad!","text":"false","success":false,"result":"Invalid JID: recipient \"bad!\" is neither a JID nor a phone number"}
+{"time":"<NOW>","endpoint":"block","chat":"120363000000000001@g.us","text":"true","success":false,"result":"groups cannot be blocked; leave the group instead"}
+{"time":"<NOW>","endpoint":"channel_follow","text":"false","success":false,"result":"channel is required"}
+{"time":"<NOW>","endpoint":"group_requests","text":" ","success":false,"result":"\"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"group_requests","chat":"120363000000000001@g.us","text":"maybe ","success":false,"result":"unknown action \"maybe\" (want approve or reject)"}
+{"time":"<NOW>","endpoint":"group_requests","chat":"120363000000000001@g.us","text":"approve ","success":false,"result":"participants are required"}
+{"time":"<NOW>","endpoint":"group_invite_reset","success":false,"result":"\"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"disappearing","success":false,"result":"chat_jid is required"}
+{"time":"<NOW>","endpoint":"disappearing","chat":"79990000002","text":"1y","success":false,"result":"timer must be off, 24h, 7d or 90d"}
+{"time":"<NOW>","endpoint":"disappearing","chat":"bad!","text":"24h","success":false,"result":"Invalid chat: recipient \"bad!\" is neither a JID nor a phone number"}
+{"time":"<NOW>","endpoint":"community_link","success":false,"result":"community: \"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"community_link","chat":"120363000000000002@g.us","success":false,"result":"group: \"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"vote","success":false,"result":"chat_jid and message_id are required"}
+{"time":"<NOW>","endpoint":"vote","chat":"79990000002@s.whatsapp.net","target_id":"IN1","text":"North","success":false,"result":"Message IN1 is not a poll the bridge knows"}
+{"time":"<NOW>","endpoint":"vote","chat":"120363000000000001@g.us","target_id":"POLL1","text":"East","success":false,"result":"\"East\" is not an option of this poll (options: North / South)"}
+{"time":"<NOW>","endpoint":"contact","text":" ","success":false,"result":"recipient is required"}
+{"time":"<NOW>","endpoint":"contact","chat":"79990000002","text":" ","success":false,"result":"phone \"\" is not a phone number"}
+{"time":"<NOW>","endpoint":"contact","chat":"79990000002","text":" +7 999","success":false,"result":"name is required"}
+{"time":"<NOW>","endpoint":"contact","chat":"79990000002","text":" ","success":false,"result":"vcard must start with BEGIN:VCARD"}
+{"time":"<NOW>","endpoint":"contact","chat":"bad!","text":"Bob 79990000003","success":false,"result":"Error parsing recipient: recipient \"bad!\" is neither a JID nor a phone number"}
+{"time":"<NOW>","endpoint":"sticker","text":"[sticker .]","success":false,"result":"recipient and media_path are required"}
+{"time":"<NOW>","endpoint":"sticker","chat":"79990000002","text":"[sticker .]","success":false,"result":"recipient and media_path are required"}
+{"time":"<NOW>","endpoint":"sticker","chat":"79990000002","text":"[sticker outside.jpg]","success":false,"result":"refusing to send <DIR>/outside.jpg: it is outside the media roots (<DIR>/store). Copy it into one of them, or add its directory to WHATSAPP_MEDIA_ROOTS"}
+{"time":"<NOW>","endpoint":"forward","target_id":"/","success":false,"result":"chat_jid, message_id and recipient are required"}
+{"time":"<NOW>","endpoint":"forward","chat":"79990000003","target_id":"79990000002@s.whatsapp.net/NOPE","success":false,"result":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}
+{"time":"<NOW>","endpoint":"forward","chat":"79990000003","target_id":"79990000002@s.whatsapp.net/OUTDEL","success":false,"result":"Message OUTDEL was deleted by its sender"}
+{"time":"<NOW>","endpoint":"forward","chat":"bad!","target_id":"79990000002@s.whatsapp.net/IN1","success":false,"result":"Error parsing recipient: recipient \"bad!\" is neither a JID nor a phone number"}
+{"time":"<NOW>","endpoint":"star","success":false,"result":"chat_jid and message_id are required"}
+{"time":"<NOW>","endpoint":"star","chat":"79990000002@s.whatsapp.net","target_id":"NOPE","success":false,"result":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}

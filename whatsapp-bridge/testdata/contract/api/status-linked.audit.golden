@@ -1,0 +1,4 @@
+{"time":"<NOW>","endpoint":"reconnect","success":false,"result":"Reconnect failed: reconnect disabled in contract tests"}
+{"time":"<NOW>","endpoint":"reconnect","success":false,"result":"reconnected less than 30s ago; try again in 20s"}
+{"time":"<NOW>","endpoint":"reconnect","success":false,"result":"Reconnect failed: reconnect disabled in contract tests"}
+{"time":"<NOW>","endpoint":"logout","success":false,"result":"Logout failed: error sending logout request: websocket not connected"}

@@ -1,0 +1,262 @@
+# golangci-lint v2 configuration for whatsapp-bridge/: the strict set the
+# refactor ends with. .golangci.strict.yml is an identical copy, so make
+# lint-strict still works; CI uses this file.
+# It keeps the current settings and adds linters that catch real defects in
+# this code base or guard the architecture; see refactor-plan/PLAN.md, "Lint".
+version: "2"
+
+linters:
+  # errcheck, govet, ineffassign, staticcheck, unused
+  default: standard
+  enable:
+    # Defects
+    - errorlint        # %w and errors.Is/As instead of %v and ==
+    - contextcheck     # functions that drop the caller's context
+    - noctx            # HTTP requests, SQL and exec without a context
+    - sqlclosecheck    # rows/stmts closed
+    - rowserrcheck     # rows.Err checked
+    - durationcheck    # duration * duration
+    - forcetypeassert  # unchecked x.(T) panics
+    - gosec            # file paths, subprocess args, integer conversions (G104 off: errcheck covers it)
+    - nolintlint       # every //nolint names its linter and says why
+    - protogetter      # nil-safe proto getters (whatsmeow messages)
+    - musttag          # every JSON-encoded struct field is tagged (wire contract)
+    # Simplicity and idiom
+    - gocognit         # functions over complexity 30 must be split
+    - unparam
+    - unconvert
+    - wastedassign
+    - gocritic
+    - revive
+    - errname
+    - containedctx
+    - copyloopvar
+    - intrange
+    - usestdlibvars
+    - predeclared
+    - misspell
+    - dupl
+    - thelper
+    # Architecture
+    - sloglint         # one logging style, injected loggers only
+    - forbidigo        # no fmt/log printing, no os.Getenv outside config
+    - depguard         # package layering (rules below)
+    - gochecknoinits
+  settings:
+    errcheck:
+      exclude-functions:
+        # Nothing useful can be done when writing a response fails: the
+        # client has gone away.
+        - (net/http.ResponseWriter).Write
+        - (*encoding/json.Encoder).Encode
+        # Deferred after Commit, where it is a no-op.
+        - (*database/sql.Tx).Rollback
+    gocognit:
+      min-complexity: 30
+    dupl:
+      threshold: 150
+    gosec:
+      excludes:
+        - G104 # unhandled errors: errcheck with its deliberate exclusions
+    gocritic:
+      disabled-checks:
+        - ifElseChain # a switch is not always clearer
+    revive:
+      # revive's defaults minus unused-parameter (handlers and interface
+      # implementations), plus use-any.
+      rules:
+        - name: blank-imports
+        - name: context-as-argument
+        - name: context-keys-type
+        - name: dot-imports
+        - name: empty-block
+        - name: error-naming
+        - name: error-return
+        - name: error-strings
+        - name: errorf
+        - name: exported
+        - name: increment-decrement
+        - name: indent-error-flow
+        - name: package-comments
+        - name: range
+        - name: receiver-naming
+        - name: redefines-builtin-id
+        - name: superfluous-else
+        - name: time-naming
+        - name: unexported-return
+        - name: unreachable-code
+        - name: var-declaration
+        - name: var-naming
+        - name: use-any
+    sloglint:
+      no-mixed-args: true
+      kv-only: true
+      no-global: all        # loggers are passed in, never slog.Default()
+      static-msg: true
+      key-naming-case: snake
+    forbidigo:
+      analyze-types: true
+      forbid:
+        - pattern: ^(fmt\.Print(f|ln)?|print|println)$
+          msg: log through the injected *slog.Logger; terminal output (QR code) goes through the console writer
+        - pattern: ^log\.(Print|Fatal|Panic)(f|ln)?$
+          msg: log through the injected *slog.Logger and return errors to main
+        - pattern: ^os\.(Getenv|LookupEnv|Environ)$
+          msg: read settings in internal/config only
+        - pattern: ^context\.TODO$
+          msg: pass the caller's context
+    depguard:
+      # The package layering of the bridge (refactor plan, "Target
+      # architecture"). Module path as renamed in wave 1.
+      rules:
+        no-unsafe:
+          files: ["$all"]
+          deny:
+            - pkg: unsafe
+              desc: not needed here
+        # Leaf packages import nothing internal.
+        leaves:
+          files:
+            - "**/internal/content/**"
+            - "**/internal/jid/**"
+            - "**/internal/audit/**"
+            - "**/internal/events/**"
+            - "**/internal/logging/**"
+          deny:
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/
+              desc: leaf packages import nothing internal
+        store:
+          files: ["**/internal/store/**"]
+          deny:
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/jid
+              desc: the store may import only internal/content
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/policy
+              desc: the store may import only internal/content
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/config
+              desc: the store may import only internal/content
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/audit
+              desc: the store may import only internal/content
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/events
+              desc: the store may import only internal/content
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/logging
+              desc: the store may import only internal/content
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/wa
+              desc: the store may import only internal/content
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/media
+              desc: the store may import only internal/content
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/bridge
+              desc: the store may import only internal/content
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/api
+              desc: the store may import only internal/content
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/app
+              desc: the store may import only internal/content
+        policy:
+          files: ["**/internal/policy/**"]
+          deny:
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/content
+              desc: policy may import only internal/jid
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/store
+              desc: policy may import only internal/jid
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/config
+              desc: policy may import only internal/jid
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/audit
+              desc: policy may import only internal/jid
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/events
+              desc: policy may import only internal/jid
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/logging
+              desc: policy may import only internal/jid
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/wa
+              desc: policy may import only internal/jid
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/media
+              desc: policy may import only internal/jid
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/bridge
+              desc: policy may import only internal/jid
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/api
+              desc: policy may import only internal/jid
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/app
+              desc: policy may import only internal/jid
+        config:
+          files: ["**/internal/config/**"]
+          deny:
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/content
+              desc: config may import only internal/jid and internal/policy
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/store
+              desc: config may import only internal/jid and internal/policy
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/audit
+              desc: config may import only internal/jid and internal/policy
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/events
+              desc: config may import only internal/jid and internal/policy
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/logging
+              desc: config may import only internal/jid and internal/policy
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/wa
+              desc: config may import only internal/jid and internal/policy
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/media
+              desc: config may import only internal/jid and internal/policy
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/bridge
+              desc: config may import only internal/jid and internal/policy
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/api
+              desc: config may import only internal/jid and internal/policy
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/app
+              desc: config may import only internal/jid and internal/policy
+        # Only the wiring starts the API and the application.
+        wiring:
+          files:
+            - "$all"
+            - "!**/internal/app/**"
+            - "!**/main.go"
+            # The REST contract tests drive the API handler built the way
+            # the wiring builds it.
+            - "!**/contract_harness_test.go"
+          deny:
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/api
+              desc: only internal/app and main.go wire the API
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/app
+              desc: only main.go runs the application
+        # Pure packages never talk to WhatsApp; whatsmeow's types and protos
+        # stay allowed.
+        no-client:
+          files:
+            - "**/internal/store/**"
+            - "**/internal/content/**"
+            - "**/internal/jid/**"
+            - "**/internal/policy/**"
+            - "**/internal/audit/**"
+            - "**/internal/events/**"
+            - "**/internal/config/**"
+          deny:
+            - pkg: go.mau.fi/whatsmeow$
+              desc: pure packages do not use the WhatsApp client
+  exclusions:
+    # Close, Flush, Print and os.Remove results, which the code ignores on
+    # purpose (deferred cleanup, logging).
+    presets:
+      - std-error-handling
+    rules:
+      # Tests fail on the assertion that follows instead.
+      - path: _test\.go
+        linters:
+          - errcheck
+          - forcetypeassert
+          - gosec
+          - noctx
+          - dupl
+          - gocognit
+      # Configuration is read from the environment in one place.
+      - path: internal/config/
+        text: os\.(Getenv|LookupEnv|Environ)
+        linters:
+          - forbidigo
+      # Tests set up their environment.
+      - path: _test\.go
+        text: os\.(Getenv|LookupEnv|Environ)
+        linters:
+          - forbidigo
+      # The terminal UI (QR code, banners) is the one place that prints to
+      # stdout.
+      - path: internal/app/console\.go
+        linters:
+          - forbidigo
+
+formatters:
+  enable:
+    - gofmt

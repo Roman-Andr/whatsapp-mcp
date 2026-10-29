@@ -1,0 +1,30 @@
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","text":"hi","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","text":"hi","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","text":"hi","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"send","success":false,"result":"send rate limit reached (WHATSAPP_SEND_RATE); try again in 7s"}
+{"time":"<NOW>","endpoint":"react","success":false,"result":"send rate limit reached (WHATSAPP_SEND_RATE); try again in 7s"}
+{"time":"<NOW>","endpoint":"read","chat":"79990000002@s.whatsapp.net","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"typing","chat":"79990000002","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"chat","chat":"79990000002","text":"pin","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"star","chat":"79990000002@s.whatsapp.net","target_id":"IN1","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","text":"hi","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","text":"hi","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"group_create","success":false,"result":"send rate limit reached (WHATSAPP_SEND_RATE); try again in 6s"}
+{"time":"<NOW>","endpoint":"react","success":false,"result":"chat_jid and message_id are required"}
+{"time":"<NOW>","endpoint":"poll","text":" []","success":false,"result":"recipient is required"}
+{"time":"<NOW>","endpoint":"location","text":"[location] 0.000000,0.000000","success":false,"result":"recipient is required"}
+{"time":"<NOW>","endpoint":"edit","success":false,"result":"chat_jid, message_id and message are required"}
+{"time":"<NOW>","endpoint":"delete","success":false,"result":"chat_jid and message_id are required"}
+{"time":"<NOW>","endpoint":"group_create","text":" []","success":false,"result":"name is required"}
+{"time":"<NOW>","endpoint":"group_leave","success":false,"result":"\"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"group_participants","text":" ","success":false,"result":"\"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"group_settings","text":"{\"chat_jid\":\"\"}","success":false,"result":"\"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"group_join","success":false,"result":"invite must be a https://chat.whatsapp.com/\u003ccode\u003e link or its code"}
+{"time":"<NOW>","endpoint":"group_requests","text":" ","success":false,"result":"\"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"group_invite_reset","success":false,"result":"\"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"disappearing","success":false,"result":"chat_jid is required"}
+{"time":"<NOW>","endpoint":"community_link","success":false,"result":"community: \"\" is not a group JID (…@g.us)"}
+{"time":"<NOW>","endpoint":"vote","success":false,"result":"chat_jid and message_id are required"}
+{"time":"<NOW>","endpoint":"contact","text":" ","success":false,"result":"recipient is required"}
+{"time":"<NOW>","endpoint":"sticker","text":"[sticker .]","success":false,"result":"recipient and media_path are required"}
+{"time":"<NOW>","endpoint":"forward","target_id":"/","success":false,"result":"chat_jid, message_id and recipient are required"}

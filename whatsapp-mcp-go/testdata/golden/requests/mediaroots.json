@@ -1,0 +1,123 @@
+[
+[
+"tools/call",
+{
+"name": "send_file",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "@STORE@/outbox/report.pdf",
+"caption": "Invoice"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_file",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "@STORE@/private/photo.png"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_file",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "@STORE@/outbox/escape.png"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_file",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "@STORE@/outbox/sub/../../private/photo.png"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_audio_message",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "@STORE@/outbox/voice.ogg"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_audio_message",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "@STORE@/private/voice.mp3"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_audio_message",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "@STORE@/outbox/.git/config.mp3"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_sticker",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "@STORE@/outbox/logo.png"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_sticker",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "@STORE@/outbox/sticker.webp"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_sticker",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "@STORE@/outbox/escape.png"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "post_status",
+"arguments": {
+"media_path": "@STORE@/private/photo.png",
+"caption": "x"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "post_status",
+"arguments": {
+"media_path": "@STORE@/outbox/report.pdf",
+"caption": "x"
+}
+}
+]
+]

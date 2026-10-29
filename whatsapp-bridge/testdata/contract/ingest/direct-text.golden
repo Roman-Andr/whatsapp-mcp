@@ -1,0 +1,29 @@
+== chats
+{"archived":0,"deleted_at":null,"jid":"79990000001@s.whatsapp.net","last_message_time":"2025-03-01 09:05:00+00:00","muted_until":0,"name":"99990000001","pinned":0,"unread_count":0}
+{"archived":0,"deleted_at":null,"jid":"79990000002@s.whatsapp.net","last_message_time":"2025-03-01 09:04:00+00:00","muted_until":0,"name":"Alice Full","pinned":0,"unread_count":1}
+{"archived":0,"deleted_at":null,"jid":"79990000003@s.whatsapp.net","last_message_time":"2025-03-01 09:02:00+00:00","muted_until":0,"name":"Bob","pinned":0,"unread_count":1}
+{"archived":0,"deleted_at":null,"jid":"79990000007@s.whatsapp.net","last_message_time":"2025-03-01 09:03:00+00:00","muted_until":0,"name":"79990000007","pinned":0,"unread_count":1}
+== messages
+{"chat_jid":"79990000002@s.whatsapp.net","content":"hello from Alice","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"D1","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"79990000002","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","starred":0,"timestamp":"2025-03-01 09:00:00+00:00","url":""}
+{"chat_jid":"79990000002@s.whatsapp.net","content":"hi Alice","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"D2","is_from_me":1,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"79990000001","sender_jid":"79990000001@s.whatsapp.net","sender_name":"","starred":0,"timestamp":"2025-03-01 09:01:00+00:00","url":""}
+{"chat_jid":"79990000003@s.whatsapp.net","content":"hey","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"D3","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"79990000003","sender_jid":"79990000003@s.whatsapp.net","sender_name":"Bob","starred":0,"timestamp":"2025-03-01 09:02:00+00:00","url":""}
+{"chat_jid":"79990000007@s.whatsapp.net","content":"who am I","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"D4","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"79990000007","sender_jid":"79990000007@s.whatsapp.net","sender_name":"Dave Push","starred":0,"timestamp":"2025-03-01 09:03:00+00:00","url":""}
+{"chat_jid":"79990000002@s.whatsapp.net","content":"via LID","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"D5","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"99990000002","sender_jid":"99990000002@lid","sender_name":"Alice Full","starred":0,"timestamp":"2025-03-01 09:04:00+00:00","url":""}
+{"chat_jid":"79990000001@s.whatsapp.net","content":"note to self","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"D6","is_from_me":1,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"99990000001","sender_jid":"99990000001@lid","sender_name":"","starred":0,"timestamp":"2025-03-01 09:05:00+00:00","url":""}
+== reactions
+== polls
+== poll_votes
+== event_responses
+== labels
+== chat_labels
+== bridge_meta
+{"key":"fts_enabled","value":"1"}
+{"key":"media_roots","value":"[\"<DIR>/store\"]"}
+== events
+{"type":"message","chat_jid":"79990000002@s.whatsapp.net","chat_name":"Alice Full","message_id":"D1","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","content":"hello from Alice","timestamp":"2025-03-01T09:00:00Z"}
+{"type":"message","chat_jid":"79990000002@s.whatsapp.net","chat_name":"Alice Full","message_id":"D2","sender_jid":"79990000001@s.whatsapp.net","is_from_me":true,"content":"hi Alice","timestamp":"2025-03-01T09:01:00Z"}
+{"type":"message","chat_jid":"79990000003@s.whatsapp.net","chat_name":"Bob","message_id":"D3","sender_jid":"79990000003@s.whatsapp.net","sender_name":"Bob","content":"hey","timestamp":"2025-03-01T09:02:00Z"}
+{"type":"message","chat_jid":"79990000007@s.whatsapp.net","chat_name":"79990000007","message_id":"D4","sender_jid":"79990000007@s.whatsapp.net","sender_name":"Dave Push","content":"who am I","timestamp":"2025-03-01T09:03:00Z"}
+{"type":"message","chat_jid":"79990000002@s.whatsapp.net","chat_name":"Alice Full","message_id":"D5","sender_jid":"99990000002@lid","sender_name":"Alice Full","content":"via LID","timestamp":"2025-03-01T09:04:00Z"}
+{"type":"message","chat_jid":"79990000001@s.whatsapp.net","chat_name":"99990000001","message_id":"D6","sender_jid":"99990000001@lid","is_from_me":true,"content":"note to self","timestamp":"2025-03-01T09:05:00Z"}
+{"type":"message","chat_jid":"79990000002@s.whatsapp.net","chat_name":"Alice Full","message_id":"D1","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","content":"hello from Alice","timestamp":"2025-03-01T09:00:00Z"}

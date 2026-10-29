@@ -1,0 +1,49 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 4 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: go
+            build-mode: manual
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - if: matrix.language == 'go'
+        uses: actions/setup-go@v7.0.0
+        with:
+          go-version-file: whatsapp-bridge/go.mod
+          cache-dependency-path: |
+            whatsapp-bridge/go.sum
+            whatsapp-mcp-go/go.sum
+      - uses: github/codeql-action/init@v4.39.0
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+      # The bridge and the Go MCP server need cgo (go-sqlite3) and the FTS5
+      # build tag, which autobuild does not know about.
+      - if: matrix.language == 'go'
+        working-directory: whatsapp-bridge
+        run: go build -tags sqlite_fts5 ./...
+      - if: matrix.language == 'go'
+        working-directory: whatsapp-mcp-go
+        run: go build -tags sqlite_fts5 ./...
+      - uses: github/codeql-action/analyze@v4.39.0
+        with:
+          category: /language:${{ matrix.language }}

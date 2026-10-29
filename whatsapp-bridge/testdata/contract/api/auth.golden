@@ -1,0 +1,183 @@
+### POST /api/send  (auth: none)
+> {}
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### POST /api/send  (auth: Authorization: Bearer wrong-token)
+> {}
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### POST /api/send  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Recipient is required
+
+### POST /api/send  (auth: x-api-token)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Recipient is required
+
+### POST /api/send  (auth: Authorization: <token>)
+> {}
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### POST /api/send  (auth: bearer, X-API-Token: wrong-token)
+> {}
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### POST /api/send  (auth: Authorization: bearer <token>)
+> {}
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/status  (auth: none)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/status  (auth: Authorization: Bearer wrong-token)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"starting","since":"<NOW>","needs_action":false}}
+
+### GET /api/status  (auth: x-api-token)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"starting","since":"<NOW>","needs_action":false}}
+
+### GET /api/status  (auth: Authorization: <token>)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/status  (auth: bearer, X-API-Token: wrong-token)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/status  (auth: Authorization: bearer <token>)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/qr  (auth: none)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/qr  (auth: Authorization: Bearer wrong-token)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/qr  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"linked":true}
+
+### GET /api/qr  (auth: x-api-token)
+< 200
+< Content-Type: application/json
+{"linked":true}
+
+### GET /api/qr  (auth: Authorization: <token>)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/qr  (auth: bearer, X-API-Token: wrong-token)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/qr  (auth: Authorization: bearer <token>)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/nope  (auth: none)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/nope  (auth: Authorization: Bearer wrong-token)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/nope  (auth: bearer)
+< 404
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+404 page not found
+
+### GET /api/nope  (auth: x-api-token)
+< 404
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+404 page not found
+
+### GET /api/nope  (auth: Authorization: <token>)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/nope  (auth: bearer, X-API-Token: wrong-token)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /api/nope  (auth: Authorization: bearer <token>)
+< 401
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Unauthorized
+
+### GET /  (auth: bearer)
+< 404
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+404 page not found
+
+### GET /api/send/extra  (auth: bearer)
+< 404
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+404 page not found
+

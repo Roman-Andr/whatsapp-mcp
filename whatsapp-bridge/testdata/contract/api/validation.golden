@@ -1,0 +1,738 @@
+### POST /api/send  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Recipient is required
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"","message":"hi"}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Recipient is required
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002"}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Message or media path is required
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"not a number","message":"hi"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Error parsing recipient: recipient \"not a number\" is neither a JID nor a phone number"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"+","message":"hi"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Error parsing recipient: empty recipient"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"bad@@jid","message":"hi"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","media_path":"relative.jpg"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"media path must be absolute: relative.jpg"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","media_path":"<DIR>/store/files/missing.jpg"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"media file not found: <DIR>/store/files/missing.jpg"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","media_path":"<DIR>/outside.jpg"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"refusing to send <DIR>/outside.jpg: it is outside the media roots (<DIR>/store). Copy it into one of them, or add its directory to WHATSAPP_MEDIA_ROOTS"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","media_path":"<DIR>/store/files/.hidden.jpg"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"refusing to send <DIR>/store/files/.hidden.jpg: hidden files and directories cannot be sent"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","message":"hi","reply_to_message_id":"NOPE"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/react  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid and message_id are required
+
+### POST /api/react  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net"}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid and message_id are required
+
+### POST /api/react  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"NOPE","emoji":"👍"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}
+
+### POST /api/poll  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+recipient is required
+
+### POST /api/poll  (auth: bearer)
+> {"recipient":"79990000002"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"question is required"}
+
+### POST /api/poll  (auth: bearer)
+> {"recipient":"79990000002","question":"Q","options":["A"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"a poll needs 2 to 12 options, got 1"}
+
+### POST /api/poll  (auth: bearer)
+> {"recipient":"79990000002","question":"Q","options":["A"," "]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"poll options must not be empty"}
+
+### POST /api/poll  (auth: bearer)
+> {"recipient":"79990000002","question":"Q","options":["A","A"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"duplicate poll option \"A\""}
+
+### POST /api/poll  (auth: bearer)
+> {"recipient":"79990000002","question":"Q","options":["A","B"],"selectable_count":3}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"selectable_count must be between 0 (any number) and 2"}
+
+### POST /api/poll  (auth: bearer)
+> {"recipient":"bad!","question":"Q","options":["A","B"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Error parsing recipient: recipient \"bad!\" is neither a JID nor a phone number"}
+
+### POST /api/location  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+recipient is required
+
+### POST /api/location  (auth: bearer)
+> {"recipient":"79990000002","latitude":91,"longitude":0}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"latitude must be between -90 and 90"}
+
+### POST /api/location  (auth: bearer)
+> {"recipient":"79990000002","latitude":0,"longitude":-181}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"longitude must be between -180 and 180"}
+
+### POST /api/location  (auth: bearer)
+> {"recipient":"bad!","latitude":1,"longitude":2}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Error parsing recipient: recipient \"bad!\" is neither a JID nor a phone number"}
+
+### POST /api/edit  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid, message_id and message are required
+
+### POST /api/edit  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"OUT1"}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid, message_id and message are required
+
+### POST /api/edit  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"NOPE","message":"x"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}
+
+### POST /api/edit  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"IN1","message":"x"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message IN1 was sent by someone else; only your own messages can be edited"}
+
+### POST /api/edit  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"OUTDEL","message":"x"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message OUTDEL was already deleted"}
+
+### POST /api/edit  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"OUTIMG","message":"x"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message OUTIMG is a image; only text messages can be edited"}
+
+### POST /api/edit  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"OUTPOLL","message":"x"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message OUTPOLL is a poll; only text messages can be edited"}
+
+### POST /api/edit  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"OUTOLD","message":"x"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message OUTOLD was sent 1h0m0s ago; WhatsApp only allows edits within 20m0s"}
+
+### POST /api/delete  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid and message_id are required
+
+### POST /api/delete  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"NOPE"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}
+
+### POST /api/delete  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"OUTDEL"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message OUTDEL was already deleted"}
+
+### POST /api/delete  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"IN1"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message IN1 was sent by someone else; in a direct chat only your own messages can be deleted"}
+
+### POST /api/delete  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","message_id":"G1"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/read  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid is required
+
+### POST /api/read  (auth: bearer)
+> {"chat_jid":"79990000009@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"No incoming messages stored for 79990000009@s.whatsapp.net"}
+
+### POST /api/read  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_ids":["NOPE"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}
+
+### POST /api/read  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_ids":["OUT1"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Nothing to mark as read: the messages are your own"}
+
+### POST /api/read  (auth: bearer)
+> {"chat_jid":"79990000004@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/read  (auth: bearer)
+> {"chat_jid":"120363000000000003@g.us"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Cannot mark GNOSENDER as read: their senders were not recorded"}
+
+### POST /api/typing  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid is required
+
+### POST /api/typing  (auth: bearer)
+> {"chat_jid":"79990000002","state":"dancing"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"unknown typing state \"dancing\" (want composing, recording or paused)"}
+
+### POST /api/typing  (auth: bearer)
+> {"chat_jid":"bad!"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Error parsing chat: recipient \"bad!\" is neither a JID nor a phone number"}
+
+### POST /api/group  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid is required
+
+### POST /api/group  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"79990000002@s.whatsapp.net\" is not a group JID (…@g.us)","announce_only":false,"locked":false,"member_count":0}
+
+### POST /api/history  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid is required
+
+### POST /api/download  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Message ID and Chat JID are required
+
+### POST /api/download  (auth: bearer)
+> {"message_id":"IMG1"}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Message ID and Chat JID are required
+
+### POST /api/download  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net"}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Message ID and Chat JID are required
+
+### POST /api/download  (auth: bearer)
+> {"message_id":"NOPE","chat_jid":"79990000002@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Failed to download media: failed to find message: sql: no rows in result set"}
+
+### POST /api/download  (auth: bearer)
+> {"message_id":"IN1","chat_jid":"79990000002@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Failed to download media: not a media message"}
+
+### POST /api/download  (auth: bearer)
+> {"message_id":"OUTIMG","chat_jid":"79990000002@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Failed to download media: incomplete media information for download"}
+
+### POST /api/logout  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+logout unlinks this device from the account; send {"confirm": true}
+
+### POST /api/logout  (auth: bearer)
+> {"confirm":false}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+logout unlinks this device from the account; send {"confirm": true}
+
+### POST /api/group/create  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"name is required"}
+
+### POST /api/group/create  (auth: bearer)
+> {"name":"xxxxxxxxxxxxxxxxxxxxxxxxxx","participants":["79990000002"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"group name has 26 characters; WhatsApp allows 25"}
+
+### POST /api/group/create  (auth: bearer)
+> {"name":"Depot"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"participants are required"}
+
+### POST /api/group/create  (auth: bearer)
+> {"name":"Depot","participants":["bad!"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"participant \"bad!\": recipient \"bad!\" is neither a JID nor a phone number"}
+
+### POST /api/group/create  (auth: bearer)
+> {"name":"Depot","participants":["120363000000000001@g.us"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"participant \"120363000000000001@g.us\" is a group"}
+
+### POST /api/group/leave  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"\" is not a group JID (…@g.us)"}
+
+### POST /api/group/participants  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"\" is not a group JID (…@g.us)"}
+
+### POST /api/group/participants  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","action":"kick","participants":["79990000003"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"unknown action \"kick\" (want add, remove, promote or demote)"}
+
+### POST /api/group/participants  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","action":"add"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"participants are required"}
+
+### POST /api/group/settings  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"\" is not a group JID (…@g.us)"}
+
+### POST /api/group/settings  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"nothing to change: give name, description, announce_only, locked or join_approval"}
+
+### POST /api/group/settings  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","name":""}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"group name must have 1 to 25 characters"}
+
+### POST /api/group/join  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"invite must be a https://chat.whatsapp.com/\u003ccode\u003e link or its code"}
+
+### POST /api/group/join  (auth: bearer)
+> {"invite":"https://example.com/AbCdEf"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"invite must be a https://chat.whatsapp.com/\u003ccode\u003e link or its code"}
+
+### POST /api/chat  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid is required
+
+### POST /api/chat  (auth: bearer)
+> {"chat_jid":"bad!","action":"archive"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Invalid chat: recipient \"bad!\" is neither a JID nor a phone number"}
+
+### POST /api/chat  (auth: bearer)
+> {"chat_jid":"79990000002","action":"explode"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"unknown action \"explode\" (want archive, unarchive, pin, unpin, mute, unmute or delete)"}
+
+### POST /api/chat  (auth: bearer)
+> {"chat_jid":"79990000002","action":"mute","mute_hours":-1}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"mute_hours must not be negative (0 mutes forever)"}
+
+### POST /api/label/chat  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid is required
+
+### POST /api/label/chat  (auth: bearer)
+> {"chat_jid":"bad!","label":"Customers"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Invalid chat: recipient \"bad!\" is neither a JID nor a phone number"}
+
+### POST /api/label/chat  (auth: bearer)
+> {"chat_jid":"79990000002"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"label is required"}
+
+### POST /api/label/chat  (auth: bearer)
+> {"chat_jid":"79990000002","label":"Nope"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"no label \"Nope\" (list_labels shows the existing ones; labels exist on WhatsApp Business accounts)"}
+
+### POST /api/label/edit  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"name is required"}
+
+### POST /api/label/edit  (auth: bearer)
+> {"name":"VIP","color":25}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"color must be 0 to 19 (WhatsApp's label palette)"}
+
+### POST /api/label/edit  (auth: bearer)
+> {"deleted":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"label_id is required to delete a label"}
+
+### POST /api/contact/info  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Invalid JID: empty recipient","blocked":false}
+
+### POST /api/block  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+jid is required
+
+### POST /api/block  (auth: bearer)
+> {"jid":"bad!"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Invalid JID: recipient \"bad!\" is neither a JID nor a phone number"}
+
+### POST /api/block  (auth: bearer)
+> {"jid":"120363000000000001@g.us","blocked":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"groups cannot be blocked; leave the group instead"}
+
+### POST /api/presence  (auth: bearer)
+> {"jid":"79990000002"}
+< 400
+< Content-Type: application/json
+{"message":"presence is off: set WHATSAPP_PRESENCE=1 on the bridge (the bridge then shows as online, which stops notifications on your phone while it runs)","success":false}
+
+### POST /api/channel/messages  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"message":"Not connected to WhatsApp","success":false}
+
+### POST /api/channel/follow  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+channel is required
+
+### POST /api/group/requests  (auth: bearer)
+> {}
+< 400
+< Content-Type: application/json
+{"message":"\"\" is not a group JID (…@g.us)","success":false}
+
+### POST /api/group/requests/update  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"\" is not a group JID (…@g.us)"}
+
+### POST /api/group/requests/update  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","action":"maybe"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"unknown action \"maybe\" (want approve or reject)"}
+
+### POST /api/group/requests/update  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","action":"approve"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"participants are required"}
+
+### POST /api/group/invite/reset  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"\" is not a group JID (…@g.us)"}
+
+### POST /api/chat/disappearing  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid is required
+
+### POST /api/chat/disappearing  (auth: bearer)
+> {"chat_jid":"79990000002","timer":"1y"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"timer must be off, 24h, 7d or 90d"}
+
+### POST /api/chat/disappearing  (auth: bearer)
+> {"chat_jid":"bad!","timer":"24h"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Invalid chat: recipient \"bad!\" is neither a JID nor a phone number"}
+
+### POST /api/community/link  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"community: \"\" is not a group JID (…@g.us)"}
+
+### POST /api/community/link  (auth: bearer)
+> {"community_jid":"120363000000000002@g.us"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"group: \"\" is not a group JID (…@g.us)"}
+
+### POST /api/community/groups  (auth: bearer)
+> {}
+< 400
+< Content-Type: application/json
+{"message":"\"\" is not a group JID (…@g.us)","success":false}
+
+### POST /api/poll/vote  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid and message_id are required
+
+### POST /api/poll/vote  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"IN1","options":["North"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message IN1 is not a poll the bridge knows"}
+
+### POST /api/poll/vote  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","message_id":"POLL1","options":["East"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"East\" is not an option of this poll (options: North / South)"}
+
+### POST /api/contact  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+recipient is required
+
+### POST /api/contact  (auth: bearer)
+> {"recipient":"79990000002"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"phone \"\" is not a phone number"}
+
+### POST /api/contact  (auth: bearer)
+> {"recipient":"79990000002","phone":"+7 999"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"name is required"}
+
+### POST /api/contact  (auth: bearer)
+> {"recipient":"79990000002","vcard":"hello"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"vcard must start with BEGIN:VCARD"}
+
+### POST /api/contact  (auth: bearer)
+> {"recipient":"bad!","name":"Bob","phone":"79990000003"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Error parsing recipient: recipient \"bad!\" is neither a JID nor a phone number"}
+
+### POST /api/sticker  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+recipient and media_path are required
+
+### POST /api/sticker  (auth: bearer)
+> {"recipient":"79990000002"}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+recipient and media_path are required
+
+### POST /api/sticker  (auth: bearer)
+> {"recipient":"79990000002","media_path":"<DIR>/outside.jpg"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"refusing to send <DIR>/outside.jpg: it is outside the media roots (<DIR>/store). Copy it into one of them, or add its directory to WHATSAPP_MEDIA_ROOTS"}
+
+### POST /api/forward  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid, message_id and recipient are required
+
+### POST /api/forward  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"NOPE","recipient":"79990000003"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}
+
+### POST /api/forward  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"OUTDEL","recipient":"79990000003"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message OUTDEL was deleted by its sender"}
+
+### POST /api/forward  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"IN1","recipient":"bad!"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Error parsing recipient: recipient \"bad!\" is neither a JID nor a phone number"}
+
+### POST /api/star  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid and message_id are required
+
+### POST /api/star  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"NOPE"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Message NOPE not found in chat 79990000002@s.whatsapp.net"}
+

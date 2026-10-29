@@ -1,0 +1,198 @@
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000003","message":"hi"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"120363000000000001@g.us","message":"hi"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000001@g.us is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"99990000002@lid","message":"hi via LID"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","message":"hi"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000003","media_path":"<DIR>/outside.jpg"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/react  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","message_id":"G1","emoji":"👍"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000001@g.us is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/react  (auth: bearer)
+> {"chat_jid":"79990000003@s.whatsapp.net","message_id":"B1","emoji":"👍"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/poll  (auth: bearer)
+> {"recipient":"79990000003","question":"Q","options":["A","B"]}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/location  (auth: bearer)
+> {"recipient":"79990000003","latitude":1,"longitude":2}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/edit  (auth: bearer)
+> {"chat_jid":"79990000003@s.whatsapp.net","message_id":"B1","message":"x"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/delete  (auth: bearer)
+> {"chat_jid":"79990000003@s.whatsapp.net","message_id":"B1"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/read  (auth: bearer)
+> {"chat_jid":"79990000003@s.whatsapp.net"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/typing  (auth: bearer)
+> {"chat_jid":"79990000003"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/typing  (auth: bearer)
+> {"chat_jid":"99990000002@lid"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/group/create  (auth: bearer)
+> {"name":"Depot","participants":["79990000002","79990000003"]}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/group/leave  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000001@g.us is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/group/participants  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","action":"add","participants":["79990000002"]}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000001@g.us is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/group/settings  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","name":"New"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000001@g.us is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/group/join  (auth: bearer)
+> {"invite":"AbCdEf123"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/chat  (auth: bearer)
+> {"chat_jid":"79990000003","action":"archive"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/label/chat  (auth: bearer)
+> {"chat_jid":"79990000003","label":"Customers","labeled":true}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/label/edit  (auth: bearer)
+> {"name":"VIP"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/block  (auth: bearer)
+> {"jid":"79990000003","blocked":true}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/channel/follow  (auth: bearer)
+> {"channel":"120363000000000099@newsletter","follow":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/group/requests/update  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","action":"approve","participants":["79990000003"]}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000001@g.us is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/group/invite/reset  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000001@g.us is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/chat/disappearing  (auth: bearer)
+> {"chat_jid":"79990000003","timer":"7d"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/community/link  (auth: bearer)
+> {"community_jid":"120363000000000002@g.us","group_jid":"120363000000000001@g.us"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000002@g.us is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/poll/vote  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","message_id":"POLL1","options":["North"]}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000001@g.us is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/contact  (auth: bearer)
+> {"recipient":"79990000003","name":"Bob","phone":"79990000003"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/sticker  (auth: bearer)
+> {"recipient":"79990000003","media_path":"<DIR>/store/files/sticker.webp"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/forward  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"IN1","recipient":"79990000003"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+
+### POST /api/star  (auth: bearer)
+> {"chat_jid":"79990000003@s.whatsapp.net","message_id":"B1","starred":true}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the send allowlist (WHATSAPP_SEND_ALLOWLIST / WHATSAPP_SEND_ALLOWLIST_FILE); allowed: 79990000002@s.whatsapp.net"}
+

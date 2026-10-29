@@ -1,0 +1,21 @@
+== chats
+{"archived":0,"deleted_at":null,"jid":"79990000002@s.whatsapp.net","last_message_time":"2025-03-01 09:03:00+00:00","muted_until":0,"name":"Alice Full","pinned":0,"unread_count":4}
+== messages
+{"chat_jid":"79990000002@s.whatsapp.net","content":"[location] 1.500000,-2.250000 live location on my way","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"LIVE","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"79990000002","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","starred":0,"timestamp":"2025-03-01 09:01:00+00:00","url":""}
+{"chat_jid":"79990000002@s.whatsapp.net","content":"[location] 55.751244,37.618423 North depot 1 Main st","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"LOC","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"79990000002","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","starred":0,"timestamp":"2025-03-01 09:00:00+00:00","url":""}
+{"chat_jid":"79990000002@s.whatsapp.net","content":"[contact] Bob","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"VCARD","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"79990000002","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","starred":0,"timestamp":"2025-03-01 09:02:00+00:00","url":""}
+{"chat_jid":"79990000002@s.whatsapp.net","content":"[contacts] Bob, Carol","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"VCARDS","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"79990000002","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","starred":0,"timestamp":"2025-03-01 09:03:00+00:00","url":""}
+== reactions
+== polls
+== poll_votes
+== event_responses
+== labels
+== chat_labels
+== bridge_meta
+{"key":"fts_enabled","value":"1"}
+{"key":"media_roots","value":"[\"<DIR>/store\"]"}
+== events
+{"type":"message","chat_jid":"79990000002@s.whatsapp.net","chat_name":"Alice Full","message_id":"LOC","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","content":"[location] 55.751244,37.618423 North depot 1 Main st","timestamp":"2025-03-01T09:00:00Z"}
+{"type":"message","chat_jid":"79990000002@s.whatsapp.net","chat_name":"Alice Full","message_id":"LIVE","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","content":"[location] 1.500000,-2.250000 live location on my way","timestamp":"2025-03-01T09:01:00Z"}
+{"type":"message","chat_jid":"79990000002@s.whatsapp.net","chat_name":"Alice Full","message_id":"VCARD","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","content":"[contact] Bob","timestamp":"2025-03-01T09:02:00Z"}
+{"type":"message","chat_jid":"79990000002@s.whatsapp.net","chat_name":"Alice Full","message_id":"VCARDS","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","content":"[contacts] Bob, Carol","timestamp":"2025-03-01T09:03:00Z"}

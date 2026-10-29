@@ -1,0 +1,12 @@
+== chats
+== messages
+== reactions
+== polls
+== poll_votes
+== event_responses
+== labels
+== chat_labels
+== bridge_meta
+{"key":"fts_enabled","value":"1"}
+{"key":"media_roots","value":"[\"<DIR>/store\"]"}
+{"key":"read_allowlist","value":"[\"79990000002@s.whatsapp.net\",\"99990000002@lid\"]"}

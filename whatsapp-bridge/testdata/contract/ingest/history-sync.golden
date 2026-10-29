@@ -1,0 +1,26 @@
+== chats
+{"archived":1,"deleted_at":null,"jid":"120363000000000001@g.us","last_message_time":"2025-03-01 09:06:00+00:00","muted_until":-1,"name":"Depot group","pinned":1,"unread_count":3}
+{"archived":0,"deleted_at":null,"jid":"79990000002@s.whatsapp.net","last_message_time":"2025-03-01 09:09:00+00:00","muted_until":1740855600000,"name":"Alice Full","pinned":0,"unread_count":1}
+{"archived":0,"deleted_at":null,"jid":"79990000003@s.whatsapp.net","last_message_time":"2025-03-01 08:00:00+00:00","muted_until":0,"name":"Bob","pinned":0,"unread_count":0}
+== messages
+{"chat_jid":"120363000000000001@g.us","content":"history one","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"H1","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"99990000002","sender_jid":"99990000002@lid","sender_name":"Alice Full","starred":0,"timestamp":"2025-03-01 09:00:00+00:00","url":""}
+{"chat_jid":"120363000000000001@g.us","content":"history mine","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"H2","is_from_me":1,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"79990000001","sender_jid":"79990000001@s.whatsapp.net","sender_name":"","starred":0,"timestamp":"2025-03-01 09:01:00+00:00","url":""}
+{"chat_jid":"79990000002@s.whatsapp.net","content":"direct history","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"H3","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"99990000002","sender_jid":"99990000002@lid","sender_name":"Alice Full","starred":0,"timestamp":"2025-03-01 09:08:00+00:00","url":""}
+{"chat_jid":"79990000003@s.whatsapp.net","content":"older page","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"H4","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"79990000003","sender_jid":"79990000003@s.whatsapp.net","sender_name":"Bob","starred":0,"timestamp":"2025-03-01 08:00:00+00:00","url":""}
+{"chat_jid":"120363000000000001@g.us","content":"[event] Party","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"HE1","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"99990000002","sender_jid":"99990000002@lid","sender_name":"Alice Full","starred":0,"timestamp":"2025-03-01 09:05:00+00:00","url":""}
+{"chat_jid":"120363000000000001@g.us","content":"[poll] Lunch?: Soup / Salad","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"HP1","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"99990000002","sender_jid":"99990000002@lid","sender_name":"Alice Full","starred":1,"timestamp":"2025-03-01 09:02:00+00:00","url":""}
+== reactions
+{"chat_jid":"120363000000000001@g.us","emoji":"🔥","message_id":"HP1","sender_jid":"99990000005@lid","sender_name":"","timestamp":"2025-03-01 09:04:00+00:00"}
+== polls
+{"chat_jid":"120363000000000001@g.us","message_id":"HP1","options":"[\"Soup\",\"Salad\"]","question":"Lunch?","selectable_count":0}
+== poll_votes
+{"chat_jid":"120363000000000001@g.us","message_id":"HP1","options":"[\"Salad\"]","timestamp":"2025-03-01 09:03:00+00:00","voter_jid":"99990000006@lid","voter_name":""}
+== event_responses
+{"chat_jid":"120363000000000001@g.us","extra_guests":0,"message_id":"HE1","responder_jid":"79990000001@s.whatsapp.net","responder_name":"","response":"maybe","timestamp":"2025-03-01 09:06:00+00:00"}
+== labels
+== chat_labels
+== bridge_meta
+{"key":"fts_enabled","value":"1"}
+{"key":"media_roots","value":"[\"<DIR>/store\"]"}
+== events
+{"type":"history","content":"1 messages","timestamp":"<NOW>"}

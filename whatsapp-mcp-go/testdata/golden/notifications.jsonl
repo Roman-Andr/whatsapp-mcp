@@ -1,0 +1,3 @@
+{"request":["resources/subscribe",{"uri":"whatsapp://chats"}],"response":{},"bridge":[]}
+{"request":["resources/subscribe",{"uri":"whatsapp://chat/120363431597928274@g.us"}],"response":{},"bridge":[]}
+{"notifications/resources/updated":["whatsapp://chat/120363431597928274@g.us","whatsapp://chats"]}

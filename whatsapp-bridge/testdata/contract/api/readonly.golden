@@ -1,0 +1,186 @@
+### POST /api/send  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/react  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/poll  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/location  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/edit  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/delete  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/read  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/typing  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/logout  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/group/create  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/group/leave  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/group/participants  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/group/settings  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/group/join  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/chat  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/label/chat  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/label/edit  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/block  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/channel/follow  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/group/requests/update  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/group/invite/reset  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/chat/disappearing  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/community/link  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/poll/vote  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/contact  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/sticker  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/forward  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+### POST /api/star  (auth: bearer)
+> {}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"the bridge runs in read-only mode (WHATSAPP_READ_ONLY); nothing can be sent or changed"}
+
+#### unguarded routes still answer in read-only mode
+
+### POST /api/connection/reconnect  (auth: bearer)
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Reconnect failed: reconnect disabled in contract tests"}
+
+### POST /api/history  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","last_reconnect":"2025-06-01T12:00:00Z","pairing":{"linked":true},"read_allowlist":[],"read_only":true,"send_allowlist":[],"session":{"state":"starting","since":"<NOW>","needs_action":false}}
+

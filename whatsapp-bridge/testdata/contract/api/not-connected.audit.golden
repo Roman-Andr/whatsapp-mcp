@@ -1,0 +1,31 @@
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","text":"hi","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"send","chat":"79990000002","text":"[file photo.jpg] caption","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"react","chat":"79990000002@s.whatsapp.net","target_id":"IN1","text":"👍","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"poll","chat":"79990000002","text":"Depot? [North / South]","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"location","chat":"79990000002","text":"[location] 55.750000,37.620000 Depot Main st","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"edit","chat":"79990000002@s.whatsapp.net","target_id":"OUT1","text":"fixed","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"delete","chat":"79990000002@s.whatsapp.net","target_id":"OUT1","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"read","chat":"79990000002@s.whatsapp.net","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"typing","chat":"79990000002","text":"recording","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"logout","success":false,"result":"Logout failed: error sending logout request: websocket not connected"}
+{"time":"<NOW>","endpoint":"reconnect","success":false,"result":"Reconnect failed: reconnect disabled in contract tests"}
+{"time":"<NOW>","endpoint":"group_create","text":"Depot [79990000002]","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"group_create","text":"Depot community []","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"group_leave","chat":"120363000000000001@g.us","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"group_participants","chat":"120363000000000001@g.us","text":"promote 79990000003","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"group_settings","chat":"120363000000000001@g.us","text":"{\"chat_jid\":\"120363000000000001@g.us\",\"name\":\"New\",\"announce_only\":true}","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"group_join","text":"https://chat.whatsapp.com/AbCdEf123","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"chat","chat":"79990000002","text":"archive","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"label_chat","chat":"79990000002","text":"customers true","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"label_edit","text":"VIP","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"block","chat":"79990000003","text":"true","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"channel_follow","chat":"120363000000000099@newsletter","text":"true","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"group_requests","chat":"120363000000000001@g.us","text":"reject 79990000003","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"group_invite_reset","chat":"120363000000000001@g.us","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"disappearing","chat":"79990000002","text":"24h","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"community_link","chat":"120363000000000002@g.us","target_id":"120363000000000001@g.us","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"vote","chat":"120363000000000001@g.us","target_id":"POLL1","text":"North","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"contact","chat":"79990000002","text":"Bob +7 999 000-00-03","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"sticker","chat":"79990000002","text":"[sticker sticker.webp]","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"forward","chat":"79990000003","target_id":"79990000002@s.whatsapp.net/IN1","success":false,"result":"Not connected to WhatsApp"}
+{"time":"<NOW>","endpoint":"star","chat":"79990000002@s.whatsapp.net","target_id":"IN1","success":false,"result":"Not connected to WhatsApp"}

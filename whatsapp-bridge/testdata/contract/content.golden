@@ -1,0 +1,110 @@
+== messages
+nil | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":""}
+empty | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":""}
+conversation | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"hello"}
+extended text | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"see https://example.com"}
+extended text reply | {"context":{"id":"QUOTED1","mentions":["99990000002@lid"],"participant":"99990000002@lid","preview":"the quoted text"},"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"agreed"}
+image with caption | {"context":{"id":"QUOTED1","mentions":["99990000002@lid"],"participant":"99990000002@lid","preview":"the quoted text"},"media":{"Type":"image","Filename":"image_20250402_150405.jpg","Mimetype":"image/jpeg","URL":"https://mmg.whatsapp.net/x","DirectPath":"/v/x","MediaKey":"AQI=","FileSHA256":"Aw==","FileEncSHA256":"BA==","FileLength":10,"Width":800,"Height":600,"Seconds":0,"Detail":""},"text":"look"}
+image png | {"media":{"Type":"image","Filename":"image_20250402_150405.png","Mimetype":"image/png","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":""}
+image unknown mime | {"media":{"Type":"image","Filename":"image_20250402_150405.jpg","Mimetype":"image/x-unknown-thing","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":""}
+video | {"media":{"Type":"video","Filename":"video_20250402_150405.mp4","Mimetype":"video/mp4","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":640,"Height":480,"Seconds":30,"Detail":""},"text":"clip"}
+gif | {"media":{"Type":"video","Filename":"video_20250402_150405.mp4","Mimetype":"video/mp4","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":"gif"},"text":""}
+video note | {"media":{"Type":"video","Filename":"video_20250402_150405.mp4","Mimetype":"video/mp4","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":9,"Detail":"video note"},"text":""}
+voice note | {"context":{"id":"QUOTED1","mentions":["99990000002@lid"],"participant":"99990000002@lid","preview":"the quoted text"},"media":{"Type":"audio","Filename":"audio_20250402_150405.ogg","Mimetype":"audio/ogg; codecs=opus","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":7,"Detail":"voice"},"text":""}
+audio file | {"media":{"Type":"audio","Filename":"audio_20250402_150405.ogg","Mimetype":"audio/mpeg","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":180,"Detail":""},"text":""}
+document named | {"media":{"Type":"document","Filename":"report.pdf","Mimetype":"application/pdf","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"Q1"}
+document unnamed | {"media":{"Type":"document","Filename":"document_20250402_150405.pdf","Mimetype":"application/pdf","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":""}
+document unnamed unknown | {"media":{"Type":"document","Filename":"document_20250402_150405","Mimetype":"application/x-nothing-known","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":""}
+document with caption envelope | {"media":{"Type":"document","Filename":"../evil/../name.txt","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"inside"}
+sticker | {"media":{"Type":"sticker","Filename":"sticker_20250402_150405.webp","Mimetype":"image/webp","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":512,"Height":512,"Seconds":0,"Detail":""},"text":""}
+animated sticker | {"media":{"Type":"sticker","Filename":"sticker_20250402_150405.webp","Mimetype":"image/webp","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":"animated"},"text":""}
+location | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"[location] 55.751244,37.618423 Red Square Moscow"}
+location bare | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"[location] -1.000000,2.000000"}
+live location | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"[location] 1.000000,2.000000 live location coming"}
+contact | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"[contact] Bob"}
+contacts array | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"[contacts] A, B"}
+event | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"[event] Depot meeting, 2025-11-01 18:00 +00:00 – 20:00 at North depot https://call.whatsapp.com/x\nBring sheets"}
+event cancelled multi-day | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"[event] (cancelled) Trip, 2025-11-01 18:00 +00:00 – 2025-11-03 09:00 at 10.000000,20.000000"}
+poll | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"poll":{"name":"Lunch?","options":["Soup","Salad"],"selectable":0},"text":"[poll] Lunch?: Soup / Salad"}
+poll v2 | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"poll":{"name":"V2?","options":["A"],"selectable":0},"text":"[poll] V2?: A"}
+poll v3 | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"poll":{"name":"V3?","options":["B"],"selectable":2},"text":"[poll] V3?: B"}
+buttons response | {"context":{"id":"QUOTED1","mentions":["99990000002@lid"],"participant":"99990000002@lid","preview":"the quoted text"},"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"Yes, deliver"}
+list response | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"Option 2"}
+template button reply | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"Confirm"}
+buttons message | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"Choose a slot"}
+list message | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"Menu\nPick one"}
+interactive | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"Order 42\nready\nYour code is 482913\nShop\n[Copy 482913] [Track https://x.example/42] [OK]"}
+hydrated template | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"DHL\nParcel 123 arrives today\nReply STOP\n[Track https://dhl.example/123] [Call +100] [Thanks]"}
+four-row template params | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"Payment of $5\nBank"}
+interactive template | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"Template body"}
+highly structured | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"code 1234"}
+ephemeral envelope | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"disappearing"}
+view once image | {"media":{"Type":"image","Filename":"image_20250402_150405.jpg","Mimetype":"image/jpeg","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"once"}
+view once v1 | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"v1"}
+view once extension | {"media":{"Type":"audio","Filename":"audio_20250402_150405.ogg","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":"voice"},"text":""}
+nested envelopes | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"deep"}
+device sent | {"context":{"id":"QUOTED1","mentions":["99990000002@lid"],"participant":"99990000002@lid","preview":"the quoted text"},"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"from phone"}
+reaction only | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":""}
+protocol only | {"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":""}
+quoted sticker | {"context":{"id":"S","mentions":null,"participant":"","preview":"[sticker]"},"media":{"Type":"","Filename":"","Mimetype":"","URL":"","DirectPath":"","MediaKey":null,"FileSHA256":null,"FileEncSHA256":null,"FileLength":0,"Width":0,"Height":0,"Seconds":0,"Detail":""},"text":"lol"}
+== extractMediaInfo with a zero timestamp names the file after now
+image | true
+== formatLocation
+55.75,37.62,"","" | "[location] 55.750000,37.620000"
+0,0,"Null Island","" | "[location] 0.000000,0.000000 Null Island"
+-33.8688,151.2093,"","Sydney" | "[location] -33.868800,151.209300 Sydney"
+1.23456789,-9.87654321," a "," b " | "[location] 1.234568,-9.876543 a   b"
+== extensionFor
+"image/jpeg" | ".jpg"
+"image/png" | ".png"
+"image/webp" | ".webp"
+"video/mp4" | ".mp4"
+"application/pdf" | ".pdf"
+"application/pdf; name=x" | ".pdf"
+"" | ".fallback"
+"nonsense/type" | ".fallback"
+== mimeTypeFor
+a.jpg | image/jpeg
+a.JPEG | image/jpeg
+a.png | image/png
+a.gif | image/gif
+a.webp | image/webp
+a.ogg | audio/ogg; codecs=opus
+a.mp3 | audio/mpeg
+a.m4a | audio/mp4
+a.mp4 | video/mp4
+a.avi | video/avi
+a.mov | video/quicktime
+a.pdf | application/pdf
+a.txt | text/plain
+a.csv | text/csv
+a.json | application/json
+a.zip | application/zip
+a.doc | application/msword
+a.docx | application/vnd.openxmlformats-officedocument.wordprocessingml.document
+a.xls | application/vnd.ms-excel
+a.xlsx | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+a.ppt | application/vnd.ms-powerpoint
+a.pptx | application/vnd.openxmlformats-officedocument.presentationml.presentation
+a.unknownext-contract | application/octet-stream
+noext | application/octet-stream
+== safeFileName
+"report.pdf" | "report.pdf"
+"../../etc/passwd" | "passwd"
+"..\\..\\win.ini" | "win.ini"
+"a:b" | "a_b"
+"tab\there" | "tab_here"
+"" | "file"
+"." | "file"
+".." | "file"
+"/" | "_"
+"dir/" | "dir"
+"émoji 😀.txt" | "émoji 😀.txt"
+== mediaDir
+"79990000002@s.whatsapp.net" | "store/79990000002@s.whatsapp.net"
+"120363000000000001@g.us" | "store/120363000000000001@g.us"
+"79990000002:5@s.whatsapp.net" | "store/79990000002_5@s.whatsapp.net"
+"../x@lid" | "store/x@lid"
+"status@broadcast" | "store/status@broadcast"
+== mediaFileName
+"3EB0ABC_photo.jpg"

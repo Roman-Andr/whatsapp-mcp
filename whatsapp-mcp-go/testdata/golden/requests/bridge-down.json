@@ -1,0 +1,14 @@
+[
+["tools/call", {"name": "send_message", "arguments": {"recipient": "120363431597928274@g.us", "message": "hi"}}],
+["tools/call", {"name": "get_bridge_status", "arguments": {}}],
+["tools/call", {"name": "list_accounts", "arguments": {}}],
+["tools/call", {"name": "list_blocked_contacts", "arguments": {}}],
+["tools/call", {"name": "list_channels", "arguments": {}}],
+["tools/call", {"name": "download_media", "arguments": {"message_id": "I1", "chat_jid": "120363431597928274@g.us"}}],
+["tools/call", {"name": "view_media", "arguments": {"message_id": "I1", "chat_jid": "120363431597928274@g.us"}}],
+["tools/call", {"name": "get_contact_info", "arguments": {"jid": "18046727669"}}],
+["tools/call", {"name": "wait_for_events", "arguments": {"timeout_seconds": 1}}],
+["tools/call", {"name": "reconnect_bridge", "arguments": {}}],
+["resources/read", {"uri": "whatsapp://status"}],
+["tools/call", {"name": "list_chats", "arguments": {"limit": 1, "include_last_message": false}}]
+]

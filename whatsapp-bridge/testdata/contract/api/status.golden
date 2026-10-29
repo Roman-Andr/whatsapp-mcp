@@ -1,0 +1,194 @@
+#### unlinked, starting
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"pairing":{"linked":false},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"starting","since":"<NOW>","needs_action":false}}
+
+### GET /api/qr  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"linked":false}
+
+### GET /api/qr?format=png  (auth: bearer)
+< 404
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+No QR code to show (already linked, or not generated yet)
+
+### POST /api/logout  (auth: bearer)
+> {"confirm":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not linked"}
+
+### POST /api/connection/reconnect  (auth: bearer)
+< 409
+< Content-Type: application/json
+{"success":false,"message":"not linked to WhatsApp: pair the device first (GET /api/qr); there is no session to reconnect"}
+
+#### unlinked, QR code shown
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"pairing":{"linked":false,"qr_code":"2@contract-qr-code,AbCdEf==,GhIjKl==,MnOpQr==","qr_image":"store/qr.png","updated":"<NOW>"},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"qr_required","reason":"not linked; scan the QR code printed by the bridge (WhatsApp \u003e Settings \u003e Linked devices)","since":"<NOW>","needs_action":true}}
+
+### GET /api/qr  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"linked":false,"qr_code":"2@contract-qr-code,AbCdEf==,GhIjKl==,MnOpQr==","qr_image":"store/qr.png","updated":"<NOW>"}
+
+### GET /api/qr?format=png  (auth: bearer)
+< 200
+< Content-Type: image/png
+< Cache-Control: no-store
+<1441 bytes, starting 89504e470d0a1a0a>
+
+### POST /api/qr?format=png  (auth: bearer)
+< 200
+< Content-Type: image/png
+< Cache-Control: no-store
+<1441 bytes, starting 89504e470d0a1a0a>
+
+#### unlinked, pairing code
+
+### GET /api/qr  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"linked":false,"qr_code":"2@contract-qr-code,AbCdEf==,GhIjKl==,MnOpQr==","qr_image":"store/qr.png","pairing_code":"ABCD-EFGH","updated":"<NOW>"}
+
+### GET /api/qr  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"linked":false,"qr_code":"2@contract-qr-code,AbCdEf==,GhIjKl==,MnOpQr==","qr_image":"store/qr.png","pairing_error":"phone number rejected","updated":"<NOW>"}
+
+#### unlinked, QR image missing
+
+### GET /api/qr?format=png  (auth: bearer)
+< 404
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+QR image not available
+
+#### linked
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"starting","since":"<NOW>","needs_action":false}}
+
+### GET /api/qr  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"linked":true}
+
+### GET /api/qr?format=png  (auth: bearer)
+< 404
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+No QR code to show (already linked, or not generated yet)
+
+#### session states, driven by whatsmeow events
+
+#### after *events.Connected
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"connected","since":"<NOW>","needs_action":false}}
+
+#### after *events.Disconnected
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"disconnected","reason":"connection lost, reconnecting","since":"<NOW>","needs_action":false}}
+
+#### after *events.LoggedOut
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"logged_out","reason":"the device was logged out (removed from Linked devices or expired); restart the bridge and scan the QR code (401: logged out from another device)","since":"<NOW>","needs_action":true}}
+
+#### after *events.LoggedOut
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"logged_out","reason":"the device was logged out (removed from Linked devices or expired); restart the bridge and scan the QR code","since":"<NOW>","needs_action":true}}
+
+#### after *events.StreamReplaced
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"stream_replaced","reason":"another client connected with this session (is a second bridge running?); stop it and restart this bridge","since":"<NOW>","needs_action":true}}
+
+#### after *events.QR
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"qr_required","reason":"not linked; scan the QR code printed by the bridge (WhatsApp \u003e Settings \u003e Linked devices)","since":"<NOW>","needs_action":true}}
+
+#### after *events.TemporaryBan
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"temporary_ban","reason":"You've been temporarily banned: 101: you sent too many messages to people who don't have you in their address books. The ban expires in 2h0m0s","since":"<NOW>","needs_action":true}}
+
+#### after *events.ClientOutdated
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"client_outdated","reason":"WhatsApp rejected this client version; update whatsmeow (go get go.mau.fi/whatsmeow@latest) and rebuild","since":"<NOW>","needs_action":true}}
+
+#### after *events.ConnectFailure
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"connect_failure","reason":"503: unknown error try later","since":"<NOW>","needs_action":true}}
+
+#### reconnect
+
+### POST /api/connection/reconnect  (auth: bearer)
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Reconnect failed: reconnect disabled in contract tests"}
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","last_reconnect":"2025-06-01T12:00:00Z","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"connect_failure","reason":"503: unknown error try later","since":"<NOW>","needs_action":true}}
+
+### POST /api/connection/reconnect  (auth: bearer)
+< 429
+< Content-Type: application/json
+< Retry-After: 20
+{"success":false,"message":"reconnected less than 30s ago; try again in 20s"}
+
+### POST /api/connection/reconnect  (auth: bearer)
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Reconnect failed: reconnect disabled in contract tests"}
+
+#### logout
+
+### POST /api/logout  (auth: bearer)
+> {"confirm":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Logout failed: error sending logout request: websocket not connected"}
+
+#### read-only with allowlists
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":["99990000002@lid"],"read_only":true,"send_allowlist":["120363000000000001@g.us","79990000002@s.whatsapp.net"],"session":{"state":"starting","since":"<NOW>","needs_action":false}}
+

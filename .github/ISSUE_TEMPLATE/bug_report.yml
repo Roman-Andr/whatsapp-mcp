@@ -1,0 +1,40 @@
+name: Bug report
+description: Something does not work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not paste message contents, phone numbers, JIDs or tokens you do not want to make public.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - Bridge (whatsapp-bridge)
+        - MCP server (whatsapp-mcp-go)
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did (tool call or API request), what you expected, what you got.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Relevant lines from the bridge or MCP server output (journalctl --user -u whatsapp-bridge / whatsapp-mcp).
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Commit
+      description: Output of `git rev-parse --short HEAD`
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: OS, Go version, MCP client (Claude Code, Claude Desktop, Cursor, …), stdio or HTTP

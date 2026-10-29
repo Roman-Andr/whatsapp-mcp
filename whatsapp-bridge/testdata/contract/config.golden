@@ -1,0 +1,126 @@
+envBool (unset)
+  -> WHATSAPP_READ_ONLY=false WHATSAPP_PRESENCE=false
+envBool WHATSAPP_PRESENCE="true" WHATSAPP_READ_ONLY="1"
+  -> WHATSAPP_READ_ONLY=true WHATSAPP_PRESENCE=true
+envBool WHATSAPP_PRESENCE="on" WHATSAPP_READ_ONLY=" YES "
+  -> WHATSAPP_READ_ONLY=true WHATSAPP_PRESENCE=true
+envBool WHATSAPP_PRESENCE="y" WHATSAPP_READ_ONLY="0"
+  -> WHATSAPP_READ_ONLY=false WHATSAPP_PRESENCE=false
+envBool WHATSAPP_PRESENCE="2" WHATSAPP_READ_ONLY="enabled"
+  -> WHATSAPP_READ_ONLY=false WHATSAPP_PRESENCE=false
+loadAPIToken (unset)
+  -> generated 64 hex characters into store/api_token
+loadAPIToken WHATSAPP_BRIDGE_TOKEN="  from-env  "
+  -> "from-env"
+loadAPIToken WHATSAPP_BRIDGE_TOKEN="   "
+  -> generated 64 hex characters into store/api_token
+loadSendAllowlist (unset)
+  -> restricted=false []
+loadSendAllowlist WHATSAPP_SEND_ALLOWLIST="79990000002, +79990000003;120363000000000001@g.us\t99990000002@lid 79990000002:5@s.whatsapp.net"
+  -> restricted=true ["120363000000000001@g.us" "79990000002@s.whatsapp.net" "79990000003@s.whatsapp.net" "99990000002@lid"]
+loadSendAllowlist WHATSAPP_SEND_ALLOWLIST="79990000002,not-a-number"
+  -> error: invalid send allowlist entry: "not-a-number": recipient "not-a-number" is neither a JID nor a phone number
+loadSendAllowlist WHATSAPP_SEND_ALLOWLIST="79990000009" WHATSAPP_SEND_ALLOWLIST_FILE="allow.txt"
+  -> restricted=true ["120363000000000001@g.us" "79990000002@s.whatsapp.net" "79990000003@s.whatsapp.net" "79990000009@s.whatsapp.net"]
+loadSendAllowlist WHATSAPP_SEND_ALLOWLIST_FILE="badallow.txt"
+  -> error: invalid send allowlist entry: "not a number": recipient "not a number" is neither a JID nor a phone number
+loadSendAllowlist WHATSAPP_SEND_ALLOWLIST_FILE="commas.txt"
+  -> error: invalid send allowlist entry: "79990000002, 79990000003": recipient "79990000002, 79990000003" is neither a JID nor a phone number
+loadSendAllowlist WHATSAPP_SEND_ALLOWLIST_FILE="missing.txt"
+  -> error: failed to read send allowlist: open missing.txt: no such file or directory
+loadReadAllowlist (unset)
+  -> restricted=false []
+loadReadAllowlist WHATSAPP_READ_ALLOWLIST="79990000002"
+  -> restricted=true ["79990000002@s.whatsapp.net"]
+loadReadAllowlist WHATSAPP_READ_ALLOWLIST_FILE="allow.txt"
+  -> restricted=true ["120363000000000001@g.us" "79990000002@s.whatsapp.net" "79990000003@s.whatsapp.net"]
+loadReadAllowlist WHATSAPP_READ_ALLOWLIST="@@"
+  -> restricted=true [""]
+loadReadAllowlist WHATSAPP_READ_ALLOWLIST_FILE="missing.txt"
+  -> error: failed to read read allowlist: open missing.txt: no such file or directory
+loadRateLimiter (unset)
+  -> 0.166667 per second, burst 3
+loadRateLimiter WHATSAPP_SEND_BURST="5" WHATSAPP_SEND_RATE="20"
+  -> 0.333333 per second, burst 5
+loadRateLimiter WHATSAPP_SEND_RATE="0"
+  -> unlimited
+loadRateLimiter WHATSAPP_SEND_BURST="0" WHATSAPP_SEND_RATE="5"
+  -> 0.083333 per second, burst 1
+loadRateLimiter WHATSAPP_SEND_RATE="-1"
+  -> error: WHATSAPP_SEND_RATE must be a non-negative whole number, got "-1"
+loadRateLimiter WHATSAPP_SEND_RATE="ten"
+  -> error: WHATSAPP_SEND_RATE must be a non-negative whole number, got "ten"
+loadRateLimiter WHATSAPP_SEND_BURST="1.5"
+  -> error: WHATSAPP_SEND_BURST must be a non-negative whole number, got "1.5"
+loadCallRejecter (unset)
+  -> calls are not rejected
+loadCallRejecter WHATSAPP_REJECT_CALLS="yes"
+  -> reject, reply ""
+loadCallRejecter WHATSAPP_REJECT_CALLS="1" WHATSAPP_REJECT_CALLS_MESSAGE="  Please write instead  "
+  -> reject, reply "Please write instead"
+loadCallRejecter WHATSAPP_REJECT_CALLS_MESSAGE="ignored without WHATSAPP_REJECT_CALLS"
+  -> calls are not rejected
+loadWelcomeMessages (unset)
+  -> null
+loadWelcomeMessages WHATSAPP_WELCOME_FILE="welcome.json"
+  -> {"120363000000000001@g.us":"Hi {name}!","120363000000000002@g.us":"Welcome {mention}"}
+loadWelcomeMessages WHATSAPP_WELCOME_FILE="missing.json"
+  -> error: failed to read WHATSAPP_WELCOME_FILE: open missing.json: no such file or directory
+loadWelcomeMessages WHATSAPP_WELCOME_FILE="welcome-bad.js"
+  -> error: WHATSAPP_WELCOME_FILE is not a JSON object of group JID to text: json: cannot unmarshal array into Go value of type map[string]string
+loadWelcomeMessages WHATSAPP_WELCOME_FILE="welcome-dm.js"
+  -> error: WHATSAPP_WELCOME_FILE: "79990000002@s.whatsapp.net" is not a group JID (…@g.us)
+loadWelcomeMessages WHATSAPP_WELCOME_FILE="welcome-empty"
+  -> error: WHATSAPP_WELCOME_FILE: empty text for 120363000000000001@g.us
+loadAutoDownloadConfig (unset)
+  -> {Enabled:true MaxVideoBytes:26214400 MaxFileBytes:104857600 Workers:2 QueueSize:256}
+loadAutoDownloadConfig WHATSAPP_AUTO_DOWNLOAD="off"
+  -> {Enabled:false MaxVideoBytes:26214400 MaxFileBytes:104857600 Workers:2 QueueSize:256}
+loadAutoDownloadConfig WHATSAPP_AUTO_DOWNLOAD="nonsense"
+  -> {Enabled:true MaxVideoBytes:26214400 MaxFileBytes:104857600 Workers:2 QueueSize:256}
+loadAutoDownloadConfig WHATSAPP_AUTO_DOWNLOAD_MAX_MB="0" WHATSAPP_AUTO_DOWNLOAD_MAX_VIDEO_MB="1.5"
+  -> {Enabled:true MaxVideoBytes:1572864 MaxFileBytes:0 Workers:2 QueueSize:256}
+loadAutoDownloadConfig WHATSAPP_AUTO_DOWNLOAD_MAX_VIDEO_MB="-1"
+  -> error: invalid WHATSAPP_AUTO_DOWNLOAD_MAX_VIDEO_MB="-1": want a number of megabytes (config {Enabled:true MaxVideoBytes:26214400 MaxFileBytes:104857600 Workers:2 QueueSize:256})
+loadAutoDownloadConfig WHATSAPP_AUTO_DOWNLOAD_MAX_MB="lots"
+  -> error: invalid WHATSAPP_AUTO_DOWNLOAD_MAX_MB="lots": want a number of megabytes (config {Enabled:true MaxVideoBytes:26214400 MaxFileBytes:104857600 Workers:2 QueueSize:256})
+loadMediaRoots HOME="<DIR>/home" TMPDIR="<DIR>/tmp"
+  -> dirs ["<DIR>/store" "<DIR>/home/.local/share/whatsapp-mcp/outbox" "<DIR>/tmp"] outbox "<DIR>/home/.local/share/whatsapp-mcp/outbox"
+loadMediaRoots TMPDIR="<DIR>/tmp" XDG_DATA_HOME="<DIR>/xdg"
+  -> dirs ["<DIR>/store" "<DIR>/xdg/whatsapp-mcp/outbox" "<DIR>/tmp"] outbox "<DIR>/xdg/whatsapp-mcp/outbox"
+loadMediaRoots HOME="<DIR>/home" WHATSAPP_MEDIA_ROOTS="media: <DIR>/tmp :~/pictures" XDG_DATA_HOME="<DIR>/xdg"
+  -> dirs ["<DIR>/media" "<DIR>/tmp" "<DIR>/home/pictures"] outbox "<DIR>/xdg/whatsapp-mcp/outbox"
+loadMediaRoots WHATSAPP_MEDIA_ROOTS=" : " XDG_DATA_HOME="<DIR>/xdg"
+  -> error: WHATSAPP_MEDIA_ROOTS lists no directory
+loadMediaRoots WHATSAPP_MEDIA_ROOTS="/" XDG_DATA_HOME="<DIR>/xdg"
+  -> error: WHATSAPP_MEDIA_ROOTS: / would allow sending every file
+loadWebhookConfig (unset)
+  -> no webhook
+loadWebhookConfig WHATSAPP_WEBHOOK_URL="https://hooks.example/wa"
+  -> url "https://hooks.example/wa" secret generated 64 hex characters into store/webhook_secret timeout 15s
+loadWebhookConfig WHATSAPP_WEBHOOK_SECRET=" s3cret " WHATSAPP_WEBHOOK_URL="http://127.0.0.1:9/x"
+  -> url "http://127.0.0.1:9/x" secret "s3cret" timeout 15s
+loadWebhookConfig WHATSAPP_WEBHOOK_DISABLED="true" WHATSAPP_WEBHOOK_URL="https://hooks.example/wa"
+  -> no webhook
+loadWebhookConfig WHATSAPP_WEBHOOK_URL="ftp://hooks.example/wa"
+  -> error: WHATSAPP_WEBHOOK_URL must be an http:// or https:// URL, got "ftp://hooks.example/wa"
+loadWebhookConfig WHATSAPP_WEBHOOK_URL="https://"
+  -> error: WHATSAPP_WEBHOOK_URL must be an http:// or https:// URL, got "https://"
+loadWebhookConfig WHATSAPP_WEBHOOK_SECRET="unused without a URL"
+  -> no webhook
+configureHistorySync (unset)
+  -> 0 days (DeviceProps unchanged)
+configureHistorySync WHATSAPP_HISTORY_DAYS="30"
+  -> 30 days, RequireFullSync=true FullSyncDaysLimit=30
+configureHistorySync WHATSAPP_HISTORY_DAYS="a month"
+  -> error: WHATSAPP_HISTORY_DAYS must be a non-negative whole number, got "a month"
+configureDeviceName (unset)
+  -> "" (DeviceProps unchanged)
+configureDeviceName WHATSAPP_DEVICE_NAME="  Depot bridge  "
+  -> "Depot bridge", DeviceProps.Os="Depot bridge"
+configureDeviceName WHATSAPP_DEVICE_NAME="яяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяя"
+  -> error: WHATSAPP_DEVICE_NAME is longer than 50 characters
+pairPhoneNumber (unset)
+  -> ""
+pairPhoneNumber WHATSAPP_PAIR_PHONE=" +79990000001 "
+  -> "79990000001"

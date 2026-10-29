@@ -1,0 +1,115 @@
+#### refused: chats outside the read allowlist
+
+### POST /api/group  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000001@g.us is not in the read allowlist (WHATSAPP_READ_ALLOWLIST / WHATSAPP_READ_ALLOWLIST_FILE)","announce_only":false,"locked":false,"member_count":0}
+
+### POST /api/history  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000001@g.us is not in the read allowlist (WHATSAPP_READ_ALLOWLIST / WHATSAPP_READ_ALLOWLIST_FILE)"}
+
+### POST /api/history  (auth: bearer)
+> {"chat_jid":"bad@@jid"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat  is not in the read allowlist (WHATSAPP_READ_ALLOWLIST / WHATSAPP_READ_ALLOWLIST_FILE)"}
+
+### POST /api/download  (auth: bearer)
+> {"message_id":"G1","chat_jid":"120363000000000001@g.us"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 120363000000000001@g.us is not in the read allowlist (WHATSAPP_READ_ALLOWLIST / WHATSAPP_READ_ALLOWLIST_FILE)"}
+
+### POST /api/contact/info  (auth: bearer)
+> {"jid":"79990000003"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the read allowlist (WHATSAPP_READ_ALLOWLIST / WHATSAPP_READ_ALLOWLIST_FILE)","blocked":false}
+
+### POST /api/presence  (auth: bearer)
+> {"jid":"79990000003"}
+< 400
+< Content-Type: application/json
+{"message":"chat 79990000003@s.whatsapp.net is not in the read allowlist (WHATSAPP_READ_ALLOWLIST / WHATSAPP_READ_ALLOWLIST_FILE)","success":false}
+
+### POST /api/channel/messages  (auth: bearer)
+> {"channel_jid":"120363000000000099@newsletter"}
+< 403
+< Content-Type: application/json
+{"message":"channel 120363000000000099@newsletter is not in the read allowlist","success":false}
+
+### POST /api/group/requests  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us"}
+< 403
+< Content-Type: application/json
+{"message":"chat 120363000000000001@g.us is not in the read allowlist (WHATSAPP_READ_ALLOWLIST / WHATSAPP_READ_ALLOWLIST_FILE)","success":false}
+
+### POST /api/community/groups  (auth: bearer)
+> {"community_jid":"120363000000000002@g.us"}
+< 403
+< Content-Type: application/json
+{"message":"chat 120363000000000002@g.us is not in the read allowlist (WHATSAPP_READ_ALLOWLIST / WHATSAPP_READ_ALLOWLIST_FILE)","success":false}
+
+### POST /api/forward  (auth: bearer)
+> {"chat_jid":"79990000003@s.whatsapp.net","message_id":"B1","recipient":"79990000002"}
+< 403
+< Content-Type: application/json
+{"success":false,"message":"chat 79990000003@s.whatsapp.net is not in the read allowlist (WHATSAPP_READ_ALLOWLIST / WHATSAPP_READ_ALLOWLIST_FILE)"}
+
+#### allowed: Alice by phone number and by LID
+
+### POST /api/history  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/download  (auth: bearer)
+> {"message_id":"IN1","chat_jid":"79990000002@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Failed to download media: not a media message"}
+
+### POST /api/contact/info  (auth: bearer)
+> {"jid":"99990000002@lid"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp","blocked":false}
+
+### POST /api/presence  (auth: bearer)
+> {"jid":"99990000002@lid"}
+< 400
+< Content-Type: application/json
+{"message":"not connected to WhatsApp","success":false}
+
+### POST /api/presence  (auth: bearer)
+> {}
+< 400
+< Content-Type: application/json
+{"message":"empty recipient","success":false}
+
+### POST /api/presence  (auth: bearer)
+> {"jid":"120363000000000001@g.us"}
+< 400
+< Content-Type: application/json
+{"message":"presence is per person, not per group","success":false}
+
+### GET /api/blocklist  (auth: bearer)
+< 500
+< Content-Type: application/json
+{"message":"Not connected to WhatsApp","success":false}
+
+### GET /api/channels  (auth: bearer)
+< 500
+< Content-Type: application/json
+{"message":"Not connected to WhatsApp","success":false}
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":["79990000002@s.whatsapp.net"],"read_only":false,"send_allowlist":[],"session":{"state":"starting","since":"<NOW>","needs_action":false}}
+

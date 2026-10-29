@@ -1,0 +1,253 @@
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","message":"hi"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","message":"caption","media_path":"<DIR>/store/files/photo.jpg"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/react  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"IN1","emoji":"👍"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/poll  (auth: bearer)
+> {"recipient":"79990000002","question":"Depot?","options":["North","South"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/location  (auth: bearer)
+> {"recipient":"79990000002","latitude":55.75,"longitude":37.62,"name":"Depot","address":"Main st"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/edit  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"OUT1","message":"fixed"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/delete  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"OUT1"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/read  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/typing  (auth: bearer)
+> {"chat_jid":"79990000002","state":"recording"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/group  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp","announce_only":false,"locked":false,"member_count":0}
+
+### POST /api/history  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","count":10}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/download  (auth: bearer)
+> {"message_id":"IMG1","chat_jid":"79990000002@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Failed to download media: failed to download media: failed to refresh media connections: failed to query media connections: websocket not connected"}
+
+### GET /api/status  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"connected":false,"full_text_search":true,"jid":"79990000001@s.whatsapp.net","pairing":{"linked":true},"read_allowlist":[],"read_only":false,"send_allowlist":[],"session":{"state":"starting","since":"<NOW>","needs_action":false}}
+
+### GET /api/qr  (auth: bearer)
+< 200
+< Content-Type: application/json
+{"linked":true}
+
+### POST /api/logout  (auth: bearer)
+> {"confirm":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Logout failed: error sending logout request: websocket not connected"}
+
+### POST /api/connection/reconnect  (auth: bearer)
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Reconnect failed: reconnect disabled in contract tests"}
+
+### POST /api/group/create  (auth: bearer)
+> {"name":"Depot","participants":["79990000002"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/group/create  (auth: bearer)
+> {"name":"Depot community","community":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/group/leave  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/group/participants  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","action":"promote","participants":["79990000003"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/group/settings  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","name":"New","announce_only":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/group/join  (auth: bearer)
+> {"invite":"https://chat.whatsapp.com/AbCdEf123"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/chat  (auth: bearer)
+> {"chat_jid":"79990000002","action":"archive"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/label/chat  (auth: bearer)
+> {"chat_jid":"79990000002","label":"customers","labeled":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/label/edit  (auth: bearer)
+> {"name":"VIP","color":3}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/contact/info  (auth: bearer)
+> {"jid":"79990000002","picture":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp","blocked":false}
+
+### GET /api/blocklist  (auth: bearer)
+< 500
+< Content-Type: application/json
+{"message":"Not connected to WhatsApp","success":false}
+
+### POST /api/block  (auth: bearer)
+> {"jid":"79990000003","blocked":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/presence  (auth: bearer)
+> {"jid":"79990000002"}
+< 400
+< Content-Type: application/json
+{"message":"not connected to WhatsApp","success":false}
+
+### GET /api/channels  (auth: bearer)
+< 500
+< Content-Type: application/json
+{"message":"Not connected to WhatsApp","success":false}
+
+### POST /api/channel/messages  (auth: bearer)
+> {"channel_jid":"120363000000000099@newsletter","count":5}
+< 500
+< Content-Type: application/json
+{"message":"Not connected to WhatsApp","success":false}
+
+### POST /api/channel/follow  (auth: bearer)
+> {"channel":"120363000000000099@newsletter","follow":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/group/requests  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us"}
+< 500
+< Content-Type: application/json
+{"message":"Not connected to WhatsApp","success":false}
+
+### POST /api/group/requests/update  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","action":"reject","participants":["79990000003"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/group/invite/reset  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/chat/disappearing  (auth: bearer)
+> {"chat_jid":"79990000002","timer":"24h"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/community/link  (auth: bearer)
+> {"community_jid":"120363000000000002@g.us","group_jid":"120363000000000001@g.us"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/community/groups  (auth: bearer)
+> {"community_jid":"120363000000000002@g.us"}
+< 500
+< Content-Type: application/json
+{"message":"Not connected to WhatsApp","success":false}
+
+### POST /api/poll/vote  (auth: bearer)
+> {"chat_jid":"120363000000000001@g.us","message_id":"POLL1","options":["North"]}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/contact  (auth: bearer)
+> {"recipient":"79990000002","name":"Bob","phone":"+7 999 000-00-03"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/sticker  (auth: bearer)
+> {"recipient":"79990000002","media_path":"<DIR>/store/files/sticker.webp"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/forward  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"IN1","recipient":"79990000003"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/star  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"IN1","starred":true}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+

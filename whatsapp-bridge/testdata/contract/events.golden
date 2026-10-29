@@ -1,0 +1,13 @@
+event full | {"type":"message","chat_jid":"c@g.us","chat_name":"Chat","message_id":"M","sender_jid":"s@lid","sender_name":"S","is_from_me":true,"content":"text","media_type":"image","quoted_id":"Q","emoji":"👍","state":"ringing","timestamp":"2025-06-01T12:30:45.123+03:00"}
+event minimal | {"type":"session","timestamp":"2025-06-01T12:30:45.123+03:00"}
+event zero | {"type":"","timestamp":"0001-01-01T00:00:00Z"}
+audit entry full | {"time":"2025-06-01T12:30:45.123+03:00","endpoint":"send","chat":"c","message_id":"M","target_id":"T","text":"x","success":true,"result":"ok"}
+audit entry minimal | {"time":"2025-06-01T12:30:45.123+03:00","endpoint":"send","success":false,"result":""}
+send response full | {"success":true,"message":"m","message_id":"M","timestamp":"2025-06-01T12:30:45.123+03:00"}
+send response minimal | {"success":false,"message":""}
+session status | {"state":"connected","reason":"r","since":"2025-06-01T12:30:45.123+03:00","needs_action":true}
+pairing info full | {"linked":false,"qr_code":"q","qr_image":"store/qr.png","pairing_code":"ABCD","pairing_error":"e","updated":"2025-06-01T12:30:45.123+03:00"}
+pairing info minimal | {"linked":true}
+download response | {"success":true,"message":"m","filename":"f","path":"/p","media_type":"image","mimetype":"image/jpeg"}
+== audit preview cuts text at 200 runes
+"яяяя…"

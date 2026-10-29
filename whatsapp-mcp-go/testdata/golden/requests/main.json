@@ -1,0 +1,1177 @@
+[
+[
+"tools/list",
+{}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"include_last_message": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"sort_by": "name",
+"limit": 3
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"query": "давид"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"query": "SNOW"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"label": "paid"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"label": "Новые"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"limit": -5,
+"page": -1
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"limit": "2"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"page": 1,
+"limit": 2
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"limit": 50,
+"include_context": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"limit": 3
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"query": "street plow",
+"include_context": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"query": "treet"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"query": "ЛАВН",
+"include_context": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"query": "zoom"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"query": "\"unbalanced (AND",
+"include_context": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"query": "nothing-like-this"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"after": "2026-10-27T08:59:00Z",
+"before": "2026-10-27T09:01:00Z",
+"chat_jid": "120363431597928274@g.us",
+"include_context": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"after": "2026-10-27T16:59:00+03:00",
+"include_context": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"after": "yesterday"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"starred_only": true
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"sender_phone_number": "+32547396399312"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"sender_phone_number": "79966764464@s.whatsapp.net",
+"include_context": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"context_before": 3,
+"context_after": 2,
+"limit": 1,
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"limit": 0,
+"include_context": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"page": 2,
+"limit": 3
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_unread_chats",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "get_chat",
+"arguments": {
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_chat",
+"arguments": {
+"chat_jid": "gone@s.whatsapp.net",
+"include_last_message": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_chat",
+"arguments": {
+"chat_jid": "nope"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_direct_chat_by_contact",
+"arguments": {
+"sender_phone_number": "+18046727669"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_direct_chat_by_contact",
+"arguments": {
+"sender_phone_number": "7"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_direct_chat_by_contact",
+"arguments": {
+"sender_phone_number": "999"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_contact_chats",
+"arguments": {
+"jid": "32547396399312@lid"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_contact_chats",
+"arguments": {
+"jid": "79966764464@s.whatsapp.net"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_last_interaction",
+"arguments": {
+"jid": "32547396399312@lid"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_last_interaction",
+"arguments": {
+"jid": "nobody"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_message_context",
+"arguments": {
+"message_id": "A2"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_message_context",
+"arguments": {
+"message_id": "A2",
+"before": 1,
+"after": 0,
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_message_context",
+"arguments": {
+"message_id": "missing"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "search_contacts",
+"arguments": {
+"query": "david"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "search_contacts",
+"arguments": {
+"query": "БЕНДЕР"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "search_contacts",
+"arguments": {
+"query": "strasse"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "search_contacts",
+"arguments": {
+"query": "STRASSE"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "search_contacts",
+"arguments": {
+"query": "375"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "search_contacts",
+"arguments": {
+"query": "a",
+"limit": 2
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_labels",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "list_statuses",
+"arguments": {
+"hours": 200
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_statuses",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "send_message",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"message": "hi @18046727669",
+"reply_to_message_id": "A1",
+"mentions": [
+"18046727669"
+]
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_message",
+"arguments": {
+"recipient": "",
+"message": "x"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_message",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"message": ""
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_file",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "/nonexistent/file.pdf"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_reaction",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"message_id": "A1",
+"emoji": "👍"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_reaction",
+"arguments": {
+"chat_jid": "",
+"message_id": "A1",
+"emoji": ""
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_poll",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"question": "Depot?",
+"options": [
+"North",
+"South"
+]
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_location",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"latitude": 55.75,
+"longitude": 37,
+"name": "Depot"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "edit_message",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"message_id": "A2",
+"new_text": "fixed"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "edit_message",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"message_id": "A2",
+"new_text": ""
+}
+}
+],
+[
+"tools/call",
+{
+"name": "delete_message",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"message_id": "A2"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "vote_poll",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"message_id": "P1",
+"options": []
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_contact",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"name": "Dave",
+"phone": "+18046727669"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_sticker",
+"arguments": {
+"recipient": "120363431597928274@g.us",
+"media_path": "/nonexistent.png"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "forward_message",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"message_id": "A1",
+"recipient": "79966764464"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "star_message",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"message_id": "A1"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "mark_read",
+"arguments": {
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "mark_read",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"message_ids": [
+"A1"
+]
+}
+}
+],
+[
+"tools/call",
+{
+"name": "send_typing",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"state": "paused"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_group_info",
+"arguments": {
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_group_info",
+"arguments": {
+"chat_jid": "79966764464@s.whatsapp.net"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "manage_chat",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"action": "mute",
+"mute_hours": 8
+}
+}
+],
+[
+"tools/call",
+{
+"name": "manage_chat",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"action": "archive"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "label_chat",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"label": "Paid",
+"labeled": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "edit_label",
+"arguments": {
+"name": "Paid",
+"color": 2
+}
+}
+],
+[
+"tools/call",
+{
+"name": "create_group",
+"arguments": {
+"name": "Crew",
+"participants": [
+"79966764464"
+]
+}
+}
+],
+[
+"tools/call",
+{
+"name": "create_group",
+"arguments": {
+"name": "Crews",
+"participants": [],
+"community": true
+}
+}
+],
+[
+"tools/call",
+{
+"name": "leave_group",
+"arguments": {
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "update_group_participants",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"action": "promote",
+"participants": [
+"1"
+]
+}
+}
+],
+[
+"tools/call",
+{
+"name": "update_group_settings",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"description": "",
+"announce_only": true
+}
+}
+],
+[
+"tools/call",
+{
+"name": "join_group",
+"arguments": {
+"invite": "https://chat.whatsapp.com/AbC"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_group_join_requests",
+"arguments": {
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "update_group_join_requests",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"action": "approve",
+"participants": [
+"5@lid"
+]
+}
+}
+],
+[
+"tools/call",
+{
+"name": "reset_group_invite_link",
+"arguments": {
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "set_disappearing_messages",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"timer": "7d"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "link_community_group",
+"arguments": {
+"community_jid": "1@g.us",
+"group_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "link_community_group",
+"arguments": {
+"community_jid": "1@g.us",
+"group_jid": "120363431597928274@g.us",
+"unlink": true
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_community_groups",
+"arguments": {
+"community_jid": "1@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "request_chat_history",
+"arguments": {
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "request_chat_history",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"count": 10,
+"before_message_id": "A1"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "download_media",
+"arguments": {
+"message_id": "I1",
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "download_media",
+"arguments": {
+"message_id": "F1",
+"chat_jid": "7@s.whatsapp.net"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "view_media",
+"arguments": {
+"message_id": "I1",
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "view_media",
+"arguments": {
+"message_id": "A1",
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "view_media",
+"arguments": {
+"message_id": "F1",
+"chat_jid": "7@s.whatsapp.net"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_contact_info",
+"arguments": {
+"jid": "+18046727669",
+"include_picture": true
+}
+}
+],
+[
+"tools/call",
+{
+"name": "view_profile_picture",
+"arguments": {
+"jid": "18046727669"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "block_contact",
+"arguments": {
+"jid": "18046727669"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_blocked_contacts",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "get_presence",
+"arguments": {
+"jid": "18046727669"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "post_status",
+"arguments": {
+"text": "Plows out at 5"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "post_status",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "list_channels",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "get_channel_messages",
+"arguments": {
+"channel_jid": "1@newsletter",
+"count": 5
+}
+}
+],
+[
+"tools/call",
+{
+"name": "follow_channel",
+"arguments": {
+"channel": "https://whatsapp.com/channel/abc"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "transcribe_voice_message",
+"arguments": {
+"message_id": "V1",
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "transcribe_voice_message",
+"arguments": {
+"message_id": "A1",
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "wait_for_events",
+"arguments": {
+"timeout_seconds": 5,
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_bridge_status",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "list_accounts",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "reconnect_bridge",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "export_chat",
+"arguments": {
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "export_chat",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"format": "json",
+"after": "2026-10-27T12:00:30+03:00"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "export_chat",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"format": "html"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "export_chat",
+"arguments": {
+"chat_jid": "120363431597928274@g.us",
+"format": "pdf"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "export_chat",
+"arguments": {
+"chat_jid": "none@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "nonexistent",
+"arguments": {}
+}
+],
+[
+"resources/list",
+{}
+],
+[
+"resources/templates/list",
+{}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://chats"
+}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://chats/unread"
+}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://status"
+}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://chat/120363431597928274@g.us"
+}
+]
+]

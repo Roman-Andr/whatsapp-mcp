@@ -1,0 +1,1237 @@
+### GET /api/send  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/send  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/send  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/send  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/send  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/react  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/react  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/react  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/react  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/react  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/poll  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/poll  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/poll  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/poll  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/poll  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/location  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/location  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/location  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/location  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/location  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/edit  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/edit  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/edit  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/edit  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/edit  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/delete  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/delete  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/delete  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/delete  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/delete  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/read  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/read  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/read  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/read  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/read  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/typing  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/typing  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/typing  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/typing  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/typing  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/group  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/group  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/group  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/history  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/history  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/history  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/history  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/history  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/download  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/download  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/download  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/download  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/download  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/logout  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/logout  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/logout  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/logout  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/logout  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/connection/reconnect  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/connection/reconnect  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### GET /api/group/create  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/group/create  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/group/create  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/create  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/create  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/group/leave  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/group/leave  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/group/leave  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/leave  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/leave  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/group/participants  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/group/participants  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/group/participants  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/participants  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/participants  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/group/settings  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/group/settings  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/group/settings  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/settings  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/settings  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/group/join  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/group/join  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/group/join  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/join  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/join  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/chat  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/chat  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/chat  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/chat  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/chat  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/label/chat  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/label/chat  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/label/chat  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/label/chat  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/label/chat  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/label/edit  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/label/edit  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/label/edit  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/label/edit  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/label/edit  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/contact/info  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/contact/info  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/contact/info  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/contact/info  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/contact/info  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/block  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/block  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/block  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/block  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/block  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/presence  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/presence  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/presence  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/presence  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/presence  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/channel/messages  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/channel/messages  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/channel/messages  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/channel/messages  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/channel/messages  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/channel/follow  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/channel/follow  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/channel/follow  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/channel/follow  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/channel/follow  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/group/requests  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/group/requests  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/group/requests  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/requests  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/requests  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/group/requests/update  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/group/requests/update  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/group/requests/update  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/requests/update  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/requests/update  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/group/invite/reset  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/group/invite/reset  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/group/invite/reset  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/invite/reset  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/group/invite/reset  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/chat/disappearing  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/chat/disappearing  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/chat/disappearing  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/chat/disappearing  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/chat/disappearing  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/community/link  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/community/link  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/community/link  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/community/link  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/community/link  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/community/groups  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/community/groups  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/community/groups  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/community/groups  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/community/groups  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/poll/vote  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/poll/vote  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/poll/vote  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/poll/vote  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/poll/vote  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/contact  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/contact  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/contact  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/contact  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/contact  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/sticker  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/sticker  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/sticker  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/sticker  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/sticker  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/forward  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/forward  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/forward  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/forward  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/forward  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### GET /api/star  (auth: bearer)
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### PUT /api/star  (auth: bearer)
+> {}
+< 405
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Method not allowed
+
+### POST /api/star  (auth: bearer)
+> {
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/star  (auth: bearer)
+> []
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+
+### POST /api/star  (auth: bearer)
+> <1048590 bytes>
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+Invalid request format
+

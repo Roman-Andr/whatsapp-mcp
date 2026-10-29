@@ -1,0 +1,25 @@
+[
+[
+"tools/list",
+{}
+],
+[
+"tools/call",
+{
+"name": "send_message",
+"arguments": {
+"recipient": "x",
+"message": "y"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"limit": 1
+}
+}
+]
+]

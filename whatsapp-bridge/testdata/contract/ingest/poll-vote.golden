@@ -1,0 +1,20 @@
+== chats
+{"archived":0,"deleted_at":null,"jid":"120363000000000001@g.us","last_message_time":"2025-03-01 09:00:00+00:00","muted_until":0,"name":"Group 120363000000000001","pinned":0,"unread_count":1}
+== messages
+{"chat_jid":"120363000000000001@g.us","content":"[poll] Depot?: North / South","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"P1","is_from_me":0,"media_detail":"","media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":"","quoted_id":"","quoted_sender":"","quoted_text":"","sender":"99990000002","sender_jid":"99990000002@lid","sender_name":"Alice Full","starred":0,"timestamp":"2025-03-01 09:00:00+00:00","url":""}
+== reactions
+== polls
+{"chat_jid":"120363000000000001@g.us","message_id":"P1","options":"[\"North\",\"South\"]","question":"Depot?","selectable_count":1}
+== poll_votes
+{"chat_jid":"120363000000000001@g.us","message_id":"P1","options":"[\"North\",\"?\"]","timestamp":"2025-03-01 09:05:00+00:00","voter_jid":"99990000005@lid","voter_name":""}
+{"chat_jid":"120363000000000001@g.us","message_id":"P1","options":"[\"South\"]","timestamp":"2025-03-01 09:05:00+00:00","voter_jid":"99990000006@lid","voter_name":""}
+== event_responses
+== labels
+== chat_labels
+== bridge_meta
+{"key":"fts_enabled","value":"1"}
+{"key":"media_roots","value":"[\"<DIR>/store\"]"}
+== events
+{"type":"message","chat_jid":"120363000000000001@g.us","chat_name":"Group 120363000000000001","message_id":"P1","sender_jid":"99990000002@lid","sender_name":"Alice Full","content":"[poll] Depot?: North / South","timestamp":"2025-03-01T09:00:00Z"}
+{"type":"poll_vote","chat_jid":"120363000000000001@g.us","message_id":"P1","sender_jid":"99990000006@lid","content":"South","timestamp":"2025-03-01T09:05:00Z"}
+{"type":"poll_vote","chat_jid":"120363000000000001@g.us","message_id":"P1","sender_jid":"99990000005@lid","content":"North, ?","timestamp":"2025-03-01T09:05:00Z"}

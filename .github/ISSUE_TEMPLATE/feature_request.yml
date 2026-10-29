@@ -1,0 +1,16 @@
+name: Feature request
+description: Suggest a tool, setting or improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What do you want to do
+      description: The task you want an agent (or the API) to be able to do, and why the current tools do not cover it.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: How it could work. Note whether it sends or changes anything on WhatsApp.

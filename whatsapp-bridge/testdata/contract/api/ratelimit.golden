@@ -1,0 +1,205 @@
+#### burst of 3, then refused
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","message":"hi"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","message":"hi"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","message":"hi"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","message":"hi"}
+< 429
+< Content-Type: application/json
+< Retry-After: 7
+{"success":false,"message":"send rate limit reached (WHATSAPP_SEND_RATE); try again in 7s"}
+
+#### validation failures use tokens too
+
+### POST /api/react  (auth: bearer)
+> {}
+< 429
+< Content-Type: application/json
+< Retry-After: 7
+{"success":false,"message":"send rate limit reached (WHATSAPP_SEND_RATE); try again in 7s"}
+
+#### signal-only and own-account routes are not limited
+
+### POST /api/read  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/typing  (auth: bearer)
+> {"chat_jid":"79990000002"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/chat  (auth: bearer)
+> {"chat_jid":"79990000002","action":"pin"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/star  (auth: bearer)
+> {"chat_jid":"79990000002@s.whatsapp.net","message_id":"IN1"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+#### 6 s later: passes although Retry-After said 7
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","message":"hi"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+#### 7 s later: one more token, then refused again
+
+### POST /api/send  (auth: bearer)
+> {"recipient":"79990000002","message":"hi"}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"Not connected to WhatsApp"}
+
+### POST /api/group/create  (auth: bearer)
+> {"name":"Depot","participants":["79990000002"]}
+< 429
+< Content-Type: application/json
+< Retry-After: 6
+{"success":false,"message":"send rate limit reached (WHATSAPP_SEND_RATE); try again in 6s"}
+
+#### a minute later: tokens for every route that reaches others
+
+### POST /api/react  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid and message_id are required
+
+### POST /api/poll  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+recipient is required
+
+### POST /api/location  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+recipient is required
+
+### POST /api/edit  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid, message_id and message are required
+
+### POST /api/delete  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid and message_id are required
+
+### POST /api/group/create  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"name is required"}
+
+### POST /api/group/leave  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"\" is not a group JID (…@g.us)"}
+
+### POST /api/group/participants  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"\" is not a group JID (…@g.us)"}
+
+### POST /api/group/settings  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"\" is not a group JID (…@g.us)"}
+
+### POST /api/group/join  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"invite must be a https://chat.whatsapp.com/\u003ccode\u003e link or its code"}
+
+### POST /api/group/requests/update  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"\" is not a group JID (…@g.us)"}
+
+### POST /api/group/invite/reset  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"\"\" is not a group JID (…@g.us)"}
+
+### POST /api/chat/disappearing  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid is required
+
+### POST /api/community/link  (auth: bearer)
+> {}
+< 500
+< Content-Type: application/json
+{"success":false,"message":"community: \"\" is not a group JID (…@g.us)"}
+
+### POST /api/poll/vote  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid and message_id are required
+
+### POST /api/contact  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+recipient is required
+
+### POST /api/sticker  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+recipient and media_path are required
+
+### POST /api/forward  (auth: bearer)
+> {}
+< 400
+< Content-Type: text/plain; charset=utf-8
+< X-Content-Type-Options: nosniff
+chat_jid, message_id and recipient are required
+

@@ -1,0 +1,201 @@
+# golangci-lint v2 configuration for whatsapp-mcp-go/: the strict set the
+# refactor ends with. .golangci.strict.yml is an identical copy, so make
+# lint-strict still works; CI uses this file.
+# It keeps the current settings and adds linters that catch real defects in
+# this code base or guard the architecture; see refactor-plan/PLAN.md, "Lint".
+version: "2"
+
+linters:
+  # errcheck, govet, ineffassign, staticcheck, unused
+  default: standard
+  enable:
+    # Defects
+    - errorlint        # %w and errors.Is/As instead of %v and ==
+    - contextcheck     # functions that drop the caller's context
+    - noctx            # HTTP requests, SQL and exec without a context
+    - sqlclosecheck    # rows/stmts closed
+    - rowserrcheck     # rows.Err checked
+    - durationcheck    # duration * duration
+    - forcetypeassert  # unchecked x.(T) panics
+    - gosec            # file paths, subprocess args, integer conversions (G104 off: errcheck covers it)
+    - nolintlint       # every //nolint names its linter and says why
+    - protogetter      # nil-safe proto getters (whatsmeow messages)
+    - musttag          # every JSON-encoded struct field is tagged (wire contract)
+    # Simplicity and idiom
+    - gocognit         # functions over complexity 30 must be split
+    - unparam
+    - unconvert
+    - wastedassign
+    - gocritic
+    - revive
+    - errname
+    - containedctx
+    - copyloopvar
+    - intrange
+    - usestdlibvars
+    - predeclared
+    - misspell
+    - dupl
+    - thelper
+    # Architecture
+    - sloglint         # one logging style, injected loggers only
+    - forbidigo        # no fmt/log printing, no os.Getenv outside config
+    - depguard         # package layering (rules below)
+    - gochecknoinits
+  settings:
+    errcheck:
+      exclude-functions:
+        # Nothing useful can be done when writing a response fails: the
+        # client has gone away.
+        - (net/http.ResponseWriter).Write
+        - (*encoding/json.Encoder).Encode
+        # Deferred after Commit, where it is a no-op.
+        - (*database/sql.Tx).Rollback
+    gocognit:
+      min-complexity: 30
+    dupl:
+      threshold: 150
+    gosec:
+      excludes:
+        - G104 # unhandled errors: errcheck with its deliberate exclusions
+    gocritic:
+      disabled-checks:
+        - ifElseChain # a switch is not always clearer
+    revive:
+      # revive's defaults minus unused-parameter (handlers and interface
+      # implementations), plus use-any.
+      rules:
+        - name: blank-imports
+        - name: context-as-argument
+        - name: context-keys-type
+        - name: dot-imports
+        - name: empty-block
+        - name: error-naming
+        - name: error-return
+        - name: error-strings
+        - name: errorf
+        - name: exported
+        - name: increment-decrement
+        - name: indent-error-flow
+        - name: package-comments
+        - name: range
+        - name: receiver-naming
+        - name: redefines-builtin-id
+        - name: superfluous-else
+        - name: time-naming
+        - name: unexported-return
+        - name: unreachable-code
+        - name: var-declaration
+        - name: var-naming
+        - name: use-any
+    sloglint:
+      no-mixed-args: true
+      kv-only: true
+      no-global: all        # loggers are passed in, never slog.Default()
+      static-msg: true
+      key-naming-case: snake
+    forbidigo:
+      analyze-types: true
+      forbid:
+        - pattern: ^(fmt\.Print(f|ln)?|print|println)$
+          msg: log through the injected *slog.Logger; terminal output (QR code) goes through the console writer
+        - pattern: ^log\.(Print|Fatal|Panic)(f|ln)?$
+          msg: log through the injected *slog.Logger and return errors to main
+        - pattern: ^os\.(Getenv|LookupEnv|Environ)$
+          msg: read settings in internal/config only
+        - pattern: ^context\.TODO$
+          msg: pass the caller's context
+    depguard:
+      # The layering of PLAN.md §2.3, with the module path the refactor
+      # gives this module. Until internal/ exists the rules match nothing.
+      rules:
+        # pyfmt (today's pyjson.go) is the output contract: stdlib only.
+        pyfmt-stdlib-only:
+          list-mode: strict
+          files:
+            - "**/internal/pyfmt/**"
+          allow:
+            - $gostd
+        # Only server, tools and resources speak MCP.
+        no-mcp-sdk:
+          files:
+            - "**/internal/store/**"
+            - "**/internal/bridgeapi/**"
+            - "**/internal/account/**"
+            - "**/internal/render/**"
+            - "**/internal/mediaconv/**"
+            - "**/internal/export/**"
+            - "**/internal/pyfmt/**"
+          deny:
+            - pkg: github.com/modelcontextprotocol/go-sdk
+              desc: only internal/server, internal/tools and internal/resources use the MCP SDK
+        store-layer:
+          files:
+            - "**/internal/store/**"
+          deny:
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-mcp-go/internal/bridgeapi
+              desc: the store reads SQLite only
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-mcp-go/internal/tools
+              desc: the store sits below the tools
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-mcp-go/internal/server
+              desc: the store sits below the server
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-mcp-go/internal/resources
+              desc: the store sits below the resources
+        bridgeapi-layer:
+          files:
+            - "**/internal/bridgeapi/**"
+          deny:
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-mcp-go/internal/store
+              desc: the bridge client talks REST only
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-mcp-go/internal/tools
+              desc: the bridge client sits below the tools
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-mcp-go/internal/server
+              desc: the bridge client sits below the server
+        server-from-main-only:
+          files:
+            - $all
+            - "!**/whatsapp-mcp-go/main.go"
+            - "!**/internal/server/**"
+          deny:
+            - pkg: github.com/Roman-Andr/whatsapp-mcp/whatsapp-mcp-go/internal/server
+              desc: only main.go wires up the server
+        no-unsafe:
+          files: ["$all"]
+          deny:
+            - pkg: unsafe
+              desc: not needed here
+  exclusions:
+    # Close, Flush, Print and os.Remove results, which the code ignores on
+    # purpose (deferred cleanup, logging).
+    presets:
+      - std-error-handling
+    rules:
+      # Tests fail on the assertion that follows instead.
+      - path: _test\.go
+        linters:
+          - errcheck
+          - forcetypeassert
+          - gosec
+          - noctx
+          - dupl
+          - gocognit
+      # Configuration is read from the environment in one place.
+      - path: internal/config/
+        text: os\.(Getenv|LookupEnv|Environ)
+        linters:
+          - forbidigo
+      # Tests set up their environment.
+      - path: _test\.go
+        text: os\.(Getenv|LookupEnv|Environ)
+        linters:
+          - forbidigo
+      # A command's main reads its settings and prints its output: the
+      # server's main.go and wa-transcribe's.
+      - path: (^|/)main\.go$
+        text: (os\.(Getenv|LookupEnv|Environ)|fmt\.Print)
+        linters:
+          - forbidigo
+
+formatters:
+  enable:
+    - gofmt

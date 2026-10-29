@@ -1,0 +1,7 @@
+store 0700
+store/messages.db 0600
+store/messages.db-wal 0600
+store/messages.db-shm 0600
+store/audit.log 0600
+store/api_token 0600
+store/qr.png 0600

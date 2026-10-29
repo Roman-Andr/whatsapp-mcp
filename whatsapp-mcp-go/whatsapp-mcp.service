@@ -1,0 +1,47 @@
+# systemd user service: the Go WhatsApp MCP server over streamable HTTP,
+# shared by every MCP client session instead of a stdio server per session.
+#
+# Install with `make install-service` (fills in @BIN@ and @CONFIG_DIR@ and
+# creates the token file unless it exists), then:
+#   systemctl --user enable --now whatsapp-mcp
+#   journalctl --user -u whatsapp-mcp -f
+# Clients connect to http://127.0.0.1:8091/mcp with
+# "Authorization: Bearer <WHATSAPP_MCP_TOKEN from ~/.config/whatsapp-mcp/env>".
+
+[Unit]
+Description=WhatsApp MCP server (Go, streamable HTTP)
+Documentation=https://github.com/Roman-Andr/whatsapp-mcp
+# Start after the bridge when both start together. The server also runs
+# without it (tools report the bridge as unreachable, the event stream
+# reconnects), so the bridge restarting does not restart this service.
+After=whatsapp-bridge.service
+Wants=whatsapp-bridge.service
+StartLimitIntervalSec=600
+StartLimitBurst=5
+
+[Service]
+Type=simple
+WorkingDirectory=@SERVER_DIR@
+# The store is ../whatsapp-bridge/store next to the binary unless the env
+# file sets WHATSAPP_STORE_DIR.
+ExecStart=@BIN@ --transport http
+# WHATSAPP_MCP_TOKEN=... (created by make install-service) and optional
+# settings such as WHATSAPP_MCP_PORT or WHATSAPP_ACCOUNTS_FILE, one per line.
+EnvironmentFile=@CONFIG_DIR@/env
+# whisper-cli (transcription) and ffmpeg (voice messages, video frames) are
+# looked up in PATH; ~/.local/bin is where they are usually installed.
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Restart=on-failure
+RestartSec=5
+# Open sessions and running wait_for_events calls are cancelled after one
+# second; the server is gone within about two.
+KillSignal=SIGTERM
+TimeoutStopSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=whatsapp-mcp
+NoNewPrivileges=yes
+UMask=0077
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,120 @@
+[
+[
+"tools/list",
+{}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"account": "work"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "send_message",
+"arguments": {
+"recipient": "w@g.us",
+"message": "hi",
+"account": "work"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "reconnect_bridge",
+"arguments": {
+"account": "work"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {
+"account": "home"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_accounts",
+"arguments": {}
+}
+],
+[
+"resources/list",
+{}
+],
+[
+"resources/templates/list",
+{}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://chats"
+}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://default/chats"
+}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://work/chats"
+}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://work/chats/unread"
+}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://work/status"
+}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://work/chat/w@g.us"
+}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://work/chat/secret@g.us"
+}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://default/chat/120363431597928274@g.us"
+}
+],
+[
+"resources/read",
+{
+"uri": "whatsapp://work/chat/120363431597928274@g.us"
+}
+]
+]

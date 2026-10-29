@@ -1,0 +1,249 @@
+== sqlite_master
+index idx_messages_chat_time (messages)
+CREATE INDEX idx_messages_chat_time ON messages(chat_jid, timestamp)
+
+index idx_messages_id (messages)
+CREATE INDEX idx_messages_id ON messages(id)
+
+index idx_messages_sender (messages)
+CREATE INDEX idx_messages_sender ON messages(sender)
+
+index idx_messages_time (messages)
+CREATE INDEX idx_messages_time ON messages(timestamp)
+
+index idx_reactions_message (reactions)
+CREATE INDEX idx_reactions_message ON reactions(chat_jid, message_id)
+
+index sqlite_autoindex_bridge_meta_1 (bridge_meta)
+
+
+index sqlite_autoindex_chat_labels_1 (chat_labels)
+
+
+index sqlite_autoindex_chats_1 (chats)
+
+
+index sqlite_autoindex_event_responses_1 (event_responses)
+
+
+index sqlite_autoindex_labels_1 (labels)
+
+
+index sqlite_autoindex_messages_1 (messages)
+
+
+index sqlite_autoindex_poll_votes_1 (poll_votes)
+
+
+index sqlite_autoindex_polls_1 (polls)
+
+
+index sqlite_autoindex_reactions_1 (reactions)
+
+
+table bridge_meta (bridge_meta)
+CREATE TABLE bridge_meta (
+			key TEXT PRIMARY KEY,
+			value TEXT
+		)
+
+table chat_labels (chat_labels)
+CREATE TABLE chat_labels (
+			chat_jid TEXT,
+			label_id TEXT,
+			PRIMARY KEY (chat_jid, label_id)
+		)
+
+table chats (chats)
+CREATE TABLE chats (jid TEXT PRIMARY KEY, name TEXT, last_message_time TIMESTAMP, unread_count INTEGER NOT NULL DEFAULT 0, archived INTEGER NOT NULL DEFAULT 0, pinned INTEGER NOT NULL DEFAULT 0, muted_until INTEGER NOT NULL DEFAULT 0, deleted_at TIMESTAMP)
+
+table event_responses (event_responses)
+CREATE TABLE event_responses (
+			message_id TEXT,
+			chat_jid TEXT,
+			responder_jid TEXT,
+			responder_name TEXT,
+			response TEXT, -- going, not going, maybe
+			extra_guests INTEGER,
+			timestamp TIMESTAMP,
+			PRIMARY KEY (message_id, chat_jid, responder_jid)
+		)
+
+table labels (labels)
+CREATE TABLE labels (
+			id TEXT PRIMARY KEY,
+			name TEXT,
+			color INTEGER,
+			deleted INTEGER NOT NULL DEFAULT 0
+		)
+
+table messages (messages)
+CREATE TABLE messages (id TEXT, chat_jid TEXT, sender TEXT, content TEXT, timestamp TIMESTAMP,
+    is_from_me BOOLEAN, media_type TEXT, filename TEXT, url TEXT, media_key BLOB, file_sha256 BLOB,
+    file_enc_sha256 BLOB, file_length INTEGER, sender_jid TEXT, sender_name TEXT, direct_path TEXT, mimetype TEXT, quoted_id TEXT, quoted_sender TEXT, quoted_text TEXT, mentions TEXT, edited_at TIMESTAMP, deleted_at TIMESTAMP, media_width INTEGER, media_height INTEGER, media_seconds INTEGER, media_detail TEXT, starred INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (id, chat_jid))
+
+table messages_fts (messages_fts)
+CREATE VIRTUAL TABLE messages_fts USING fts5(
+			content, content='messages', content_rowid='rowid',
+			tokenize='unicode61 remove_diacritics 2'
+		)
+
+table messages_fts_config (messages_fts_config)
+CREATE TABLE 'messages_fts_config'(k PRIMARY KEY, v) WITHOUT ROWID
+
+table messages_fts_data (messages_fts_data)
+CREATE TABLE 'messages_fts_data'(id INTEGER PRIMARY KEY, block BLOB)
+
+table messages_fts_docsize (messages_fts_docsize)
+CREATE TABLE 'messages_fts_docsize'(id INTEGER PRIMARY KEY, sz BLOB)
+
+table messages_fts_idx (messages_fts_idx)
+CREATE TABLE 'messages_fts_idx'(segid, term, pgno, PRIMARY KEY(segid, term)) WITHOUT ROWID
+
+table poll_votes (poll_votes)
+CREATE TABLE poll_votes (
+			message_id TEXT,
+			chat_jid TEXT,
+			voter_jid TEXT,
+			voter_name TEXT,
+			options TEXT, -- JSON array of the option names chosen
+			timestamp TIMESTAMP,
+			PRIMARY KEY (message_id, chat_jid, voter_jid)
+		)
+
+table polls (polls)
+CREATE TABLE polls (
+			message_id TEXT,
+			chat_jid TEXT,
+			question TEXT,
+			options TEXT, -- JSON array of option names, in order
+			selectable_count INTEGER,
+			PRIMARY KEY (message_id, chat_jid)
+		)
+
+table reactions (reactions)
+CREATE TABLE reactions (
+			message_id TEXT,
+			chat_jid TEXT,
+			sender_jid TEXT,
+			sender_name TEXT,
+			emoji TEXT,
+			timestamp TIMESTAMP,
+			PRIMARY KEY (message_id, chat_jid, sender_jid)
+		)
+
+trigger messages_fts_delete (messages)
+CREATE TRIGGER messages_fts_delete AFTER DELETE ON messages BEGIN
+			INSERT INTO messages_fts(messages_fts, rowid, content) VALUES ('delete', old.rowid, old.content);
+		END
+
+trigger messages_fts_insert (messages)
+CREATE TRIGGER messages_fts_insert AFTER INSERT ON messages BEGIN
+			INSERT INTO messages_fts(rowid, content) VALUES (new.rowid, new.content);
+		END
+
+trigger messages_fts_update (messages)
+CREATE TRIGGER messages_fts_update AFTER UPDATE OF content ON messages BEGIN
+			INSERT INTO messages_fts(messages_fts, rowid, content) VALUES ('delete', old.rowid, old.content);
+			INSERT INTO messages_fts(rowid, content) VALUES (new.rowid, new.content);
+		END
+
+== table_info bridge_meta
+0 key TEXT notnull=0 default=NULL pk=1
+1 value TEXT notnull=0 default=NULL pk=0
+== table_info chat_labels
+0 chat_jid TEXT notnull=0 default=NULL pk=1
+1 label_id TEXT notnull=0 default=NULL pk=2
+== table_info chats
+0 jid TEXT notnull=0 default=NULL pk=1
+1 name TEXT notnull=0 default=NULL pk=0
+2 last_message_time TIMESTAMP notnull=0 default=NULL pk=0
+3 unread_count INTEGER notnull=1 default=0 pk=0
+4 archived INTEGER notnull=1 default=0 pk=0
+5 pinned INTEGER notnull=1 default=0 pk=0
+6 muted_until INTEGER notnull=1 default=0 pk=0
+7 deleted_at TIMESTAMP notnull=0 default=NULL pk=0
+== table_info event_responses
+0 message_id TEXT notnull=0 default=NULL pk=1
+1 chat_jid TEXT notnull=0 default=NULL pk=2
+2 responder_jid TEXT notnull=0 default=NULL pk=3
+3 responder_name TEXT notnull=0 default=NULL pk=0
+4 response TEXT notnull=0 default=NULL pk=0
+5 extra_guests INTEGER notnull=0 default=NULL pk=0
+6 timestamp TIMESTAMP notnull=0 default=NULL pk=0
+== table_info labels
+0 id TEXT notnull=0 default=NULL pk=1
+1 name TEXT notnull=0 default=NULL pk=0
+2 color INTEGER notnull=0 default=NULL pk=0
+3 deleted INTEGER notnull=1 default=0 pk=0
+== table_info messages
+0 id TEXT notnull=0 default=NULL pk=1
+1 chat_jid TEXT notnull=0 default=NULL pk=2
+2 sender TEXT notnull=0 default=NULL pk=0
+3 content TEXT notnull=0 default=NULL pk=0
+4 timestamp TIMESTAMP notnull=0 default=NULL pk=0
+5 is_from_me BOOLEAN notnull=0 default=NULL pk=0
+6 media_type TEXT notnull=0 default=NULL pk=0
+7 filename TEXT notnull=0 default=NULL pk=0
+8 url TEXT notnull=0 default=NULL pk=0
+9 media_key BLOB notnull=0 default=NULL pk=0
+10 file_sha256 BLOB notnull=0 default=NULL pk=0
+11 file_enc_sha256 BLOB notnull=0 default=NULL pk=0
+12 file_length INTEGER notnull=0 default=NULL pk=0
+13 sender_jid TEXT notnull=0 default=NULL pk=0
+14 sender_name TEXT notnull=0 default=NULL pk=0
+15 direct_path TEXT notnull=0 default=NULL pk=0
+16 mimetype TEXT notnull=0 default=NULL pk=0
+17 quoted_id TEXT notnull=0 default=NULL pk=0
+18 quoted_sender TEXT notnull=0 default=NULL pk=0
+19 quoted_text TEXT notnull=0 default=NULL pk=0
+20 mentions TEXT notnull=0 default=NULL pk=0
+21 edited_at TIMESTAMP notnull=0 default=NULL pk=0
+22 deleted_at TIMESTAMP notnull=0 default=NULL pk=0
+23 media_width INTEGER notnull=0 default=NULL pk=0
+24 media_height INTEGER notnull=0 default=NULL pk=0
+25 media_seconds INTEGER notnull=0 default=NULL pk=0
+26 media_detail TEXT notnull=0 default=NULL pk=0
+27 starred INTEGER notnull=1 default=0 pk=0
+== table_info messages_fts
+0 content  notnull=0 default=NULL pk=0
+== table_info messages_fts_config
+0 k  notnull=1 default=NULL pk=1
+1 v  notnull=0 default=NULL pk=0
+== table_info messages_fts_data
+0 id INTEGER notnull=0 default=NULL pk=1
+1 block BLOB notnull=0 default=NULL pk=0
+== table_info messages_fts_docsize
+0 id INTEGER notnull=0 default=NULL pk=1
+1 sz BLOB notnull=0 default=NULL pk=0
+== table_info messages_fts_idx
+0 segid  notnull=1 default=NULL pk=1
+1 term  notnull=1 default=NULL pk=2
+2 pgno  notnull=0 default=NULL pk=0
+== table_info poll_votes
+0 message_id TEXT notnull=0 default=NULL pk=1
+1 chat_jid TEXT notnull=0 default=NULL pk=2
+2 voter_jid TEXT notnull=0 default=NULL pk=3
+3 voter_name TEXT notnull=0 default=NULL pk=0
+4 options TEXT notnull=0 default=NULL pk=0
+5 timestamp TIMESTAMP notnull=0 default=NULL pk=0
+== table_info polls
+0 message_id TEXT notnull=0 default=NULL pk=1
+1 chat_jid TEXT notnull=0 default=NULL pk=2
+2 question TEXT notnull=0 default=NULL pk=0
+3 options TEXT notnull=0 default=NULL pk=0
+4 selectable_count INTEGER notnull=0 default=NULL pk=0
+== table_info reactions
+0 message_id TEXT notnull=0 default=NULL pk=1
+1 chat_jid TEXT notnull=0 default=NULL pk=2
+2 sender_jid TEXT notnull=0 default=NULL pk=3
+3 sender_name TEXT notnull=0 default=NULL pk=0
+4 emoji TEXT notnull=0 default=NULL pk=0
+5 timestamp TIMESTAMP notnull=0 default=NULL pk=0
+== chats
+{"archived":0,"deleted_at":null,"jid":"120363000000000001@g.us","last_message_time":"2024-12-01 10:00:00+03:00","muted_until":0,"name":"Depot group","pinned":0,"unread_count":0}
+== messages
+{"chat_jid":"120363000000000001@g.us","content":"old text","deleted_at":null,"direct_path":null,"edited_at":null,"file_enc_sha256":null,"file_length":0,"file_sha256":null,"filename":"","id":"U1","is_from_me":0,"media_detail":null,"media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":null,"quoted_id":null,"quoted_sender":null,"quoted_text":null,"sender":"79990000002","sender_jid":null,"sender_name":null,"starred":0,"timestamp":"2024-12-01 10:00:00+03:00","url":""}
+{"chat_jid":"120363000000000001@g.us","content":"old photo","deleted_at":null,"direct_path":null,"edited_at":null,"file_enc_sha256":"x'0506'","file_length":2048,"file_sha256":"x'0304'","filename":"image_1.jpg","id":"U2","is_from_me":1,"media_detail":null,"media_height":null,"media_key":"x'0102'","media_seconds":null,"media_type":"image","media_width":null,"mentions":null,"mimetype":null,"quoted_id":null,"quoted_sender":null,"quoted_text":null,"sender":"79990000001","sender_jid":null,"sender_name":null,"starred":0,"timestamp":"2024-12-01 10:01:00+03:00","url":"https://mmg.whatsapp.net/u2"}
+== bridge_meta
+{"key":"fts_enabled","value":"1"}

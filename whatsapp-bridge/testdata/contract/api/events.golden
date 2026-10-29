@@ -1,0 +1,16 @@
+< 200
+< Content-Type: text/event-stream
+< Cache-Control: no-cache
+< Connection: keep-alive
+
+: connected
+
+event: message
+data: {"type":"message","chat_jid":"79990000002@s.whatsapp.net","chat_name":"Alice Full","message_id":"M1","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","content":"line one\nline \"two\"","media_type":"image","quoted_id":"Q1","timestamp":"2025-06-01T09:30:00Z"}
+
+event: reaction
+data: {"type":"reaction","chat_jid":"99990000002@lid","message_id":"M1","sender_jid":"99990000002@lid","is_from_me":true,"emoji":"👍","timestamp":"2025-06-01T09:30:00Z"}
+
+event: session
+data: {"type":"session","content":"the device was logged out (removed from Linked devices or expired); restart the bridge and scan the QR code","state":"logged_out","timestamp":"2025-06-01T09:30:00Z"}
+

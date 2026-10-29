@@ -1,0 +1,2 @@
+{"time":"<NOW>","endpoint":"logout","success":false,"result":"Not linked"}
+{"time":"<NOW>","endpoint":"reconnect","success":false,"result":"not linked to WhatsApp: pair the device first (GET /api/qr); there is no session to reconnect"}

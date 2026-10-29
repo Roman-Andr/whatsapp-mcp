@@ -1,0 +1,114 @@
+[
+[
+"tools/call",
+{
+"name": "list_chats",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "list_messages",
+"arguments": {
+"include_context": false
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_message_context",
+"arguments": {
+"message_id": "A1",
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_chat",
+"arguments": {
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "search_contacts",
+"arguments": {
+"query": "Antonina"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "download_media",
+"arguments": {
+"message_id": "A3",
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "get_group_info",
+"arguments": {
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_blocked_contacts",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "list_channels",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "export_chat",
+"arguments": {
+"chat_jid": "120363431597928274@g.us"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "list_labels",
+"arguments": {}
+}
+],
+[
+"tools/call",
+{
+"name": "get_contact_info",
+"arguments": {
+"jid": "18046727669"
+}
+}
+],
+[
+"tools/call",
+{
+"name": "transcribe_voice_message",
+"arguments": {
+"message_id": "V1",
+"chat_jid": "120363431597928274@g.us"
+}
+}
+]
+]

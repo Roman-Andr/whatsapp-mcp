@@ -1,0 +1,37 @@
+# systemd user service for the WhatsApp bridge.
+#
+# Install with `make install-service` (fills in @BRIDGE_DIR@), then:
+#   systemctl --user enable --now whatsapp-bridge
+#   journalctl --user -u whatsapp-bridge -f
+# Link the device interactively first (`make run`, scan the QR code): a QR
+# code in the journal is hard to scan. `loginctl enable-linger` keeps the
+# bridge running while you are logged out.
+
+[Unit]
+Description=WhatsApp bridge (whatsmeow) for the WhatsApp MCP server
+Documentation=https://github.com/Roman-Andr/whatsapp-mcp
+# Give up after 5 failed starts in 10 minutes, e.g. while a QR scan is
+# needed or another bridge holds the port.
+StartLimitIntervalSec=600
+StartLimitBurst=5
+
+[Service]
+Type=simple
+WorkingDirectory=@BRIDGE_DIR@
+ExecStart=@BRIDGE_DIR@/whatsapp-bridge
+# Optional settings (WHATSAPP_SEND_ALLOWLIST=..., WHATSAPP_WEBHOOK_URL=...),
+# one VAR=value per line.
+EnvironmentFile=-%h/.config/whatsapp-bridge/env
+Restart=on-failure
+RestartSec=15
+# The bridge disconnects cleanly on SIGINT/SIGTERM.
+KillSignal=SIGINT
+TimeoutStopSec=30
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=whatsapp-bridge
+NoNewPrivileges=yes
+UMask=0077
+
+[Install]
+WantedBy=default.target

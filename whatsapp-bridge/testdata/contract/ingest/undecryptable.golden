@@ -1,0 +1,16 @@
+== chats
+{"archived":0,"deleted_at":null,"jid":"79990000002@s.whatsapp.net","last_message_time":"2025-03-01 09:00:00+00:00","muted_until":0,"name":"Alice Full","pinned":0,"unread_count":1}
+== messages
+{"chat_jid":"79990000002@s.whatsapp.net","content":"the real text","deleted_at":null,"direct_path":"","edited_at":null,"file_enc_sha256":null,"file_length":null,"file_sha256":null,"filename":"","id":"U1","is_from_me":0,"media_detail":null,"media_height":null,"media_key":null,"media_seconds":null,"media_type":"","media_width":null,"mentions":null,"mimetype":null,"quoted_id":null,"quoted_sender":null,"quoted_text":null,"sender":"79990000002","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","starred":0,"timestamp":"2025-03-01 09:00:00+00:00","url":null}
+== reactions
+== polls
+== poll_votes
+== event_responses
+== labels
+== chat_labels
+== bridge_meta
+{"key":"fts_enabled","value":"1"}
+{"key":"media_roots","value":"[\"<DIR>/store\"]"}
+== events
+{"type":"unavailable","chat_jid":"79990000002@s.whatsapp.net","chat_name":"Alice Full","message_id":"U1","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","content":"[message unavailable: waiting for the sender or your phone to resend it]","timestamp":"2025-03-01T09:00:00Z"}
+{"type":"message","chat_jid":"79990000002@s.whatsapp.net","chat_name":"Alice Full","message_id":"U1","sender_jid":"79990000002@s.whatsapp.net","sender_name":"Alice Full","content":"the real text","timestamp":"2025-03-01T09:00:00Z"}
