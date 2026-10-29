@@ -15,7 +15,7 @@ import (
 
 // Store persists chats, messages and reactions in <dir>/messages.db.
 // The MCP server reads the same file directly, so every column added here is
-// part of the contract with whatsapp-mcp-go (store.go and its queries).
+// part of the contract with whatsapp-mcp (store.go and its queries).
 type Store struct {
 	db  *sql.DB
 	log *slog.Logger

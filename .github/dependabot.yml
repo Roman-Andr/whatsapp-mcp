@@ -8,7 +8,7 @@ updates:
       go:
         patterns: ["*"]
   - package-ecosystem: gomod
-    directory: /whatsapp-mcp-go
+    directory: /whatsapp-mcp
     schedule:
       interval: weekly
     groups:

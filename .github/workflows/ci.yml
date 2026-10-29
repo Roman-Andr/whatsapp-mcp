@@ -45,13 +45,13 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: whatsapp-mcp-go
+        working-directory: whatsapp-mcp
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-go@v7.0.0
         with:
-          go-version-file: whatsapp-mcp-go/go.mod
-          cache-dependency-path: whatsapp-mcp-go/go.sum
+          go-version-file: whatsapp-mcp/go.mod
+          cache-dependency-path: whatsapp-mcp/go.sum
       - name: gofmt
         run: |
           unformatted=$(gofmt -l .)
@@ -62,7 +62,7 @@ jobs:
         uses: golangci/golangci-lint-action@v9.3.0
         with:
           version: v2.14.0
-          working-directory: whatsapp-mcp-go
+          working-directory: whatsapp-mcp
           args: --build-tags sqlite_fts5
       # go vet and the tests of the server and the media packages, with FTS5
       - run: make test

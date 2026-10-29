@@ -31,7 +31,7 @@ jobs:
           go-version-file: whatsapp-bridge/go.mod
           cache-dependency-path: |
             whatsapp-bridge/go.sum
-            whatsapp-mcp-go/go.sum
+            whatsapp-mcp/go.sum
       - uses: github/codeql-action/init@v4.39.0
         with:
           languages: ${{ matrix.language }}
@@ -42,7 +42,7 @@ jobs:
         working-directory: whatsapp-bridge
         run: go build -tags sqlite_fts5 ./...
       - if: matrix.language == 'go'
-        working-directory: whatsapp-mcp-go
+        working-directory: whatsapp-mcp
         run: go build -tags sqlite_fts5 ./...
       - uses: github/codeql-action/analyze@v4.39.0
         with:

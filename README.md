@@ -5,9 +5,9 @@ Give an AI agent (Claude Code, Claude Desktop, Cursor, any MCP client) access to
 [![CI](https://github.com/Roman-Andr/whatsapp-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/Roman-Andr/whatsapp-mcp/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/Roman-Andr/whatsapp-mcp/actions/workflows/codeql.yml/badge.svg)](https://github.com/Roman-Andr/whatsapp-mcp/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/github/license/Roman-Andr/whatsapp-mcp)](LICENSE)
-[![Go](https://img.shields.io/github/go-mod/go-version/Roman-Andr/whatsapp-mcp?filename=whatsapp-mcp-go%2Fgo.mod)](whatsapp-mcp-go/go.mod)
+[![Go](https://img.shields.io/github/go-mod/go-version/Roman-Andr/whatsapp-mcp?filename=whatsapp-mcp%2Fgo.mod)](whatsapp-mcp/go.mod)
 
-The **bridge** (`whatsapp-bridge/`) links to your account as a WhatsApp Web device through [whatsmeow](https://github.com/tulir/whatsmeow), keeps every message in a local SQLite store and serves a token-protected REST API on localhost. The **MCP server** (`whatsapp-mcp-go/`) reads that store and calls the bridge for anything that changes state, exposing 59 tools, resources and live events over stdio or streamable HTTP.
+The **bridge** (`whatsapp-bridge/`) links to your account as a WhatsApp Web device through [whatsmeow](https://github.com/tulir/whatsmeow), keeps every message in a local SQLite store and serves a token-protected REST API on localhost. The **MCP server** (`whatsapp-mcp/`) reads that store and calls the bridge for anything that changes state, exposing 59 tools, resources and live events over stdio or streamable HTTP.
 
 Nothing leaves your machine except through WhatsApp itself and the tool results your MCP client passes to its model. The bridge enforces the limits that matter (send and read allowlists, read-only mode, a human-pace send rate, the directories files may be sent from), so they hold even when an agent is prompt-injected.
 
@@ -93,8 +93,8 @@ Without the `sqlite_fts5` build tag (`make` sets it) the bridge still works, but
 ### 2. Build the MCP server
 
 ```bash
-cd ../whatsapp-mcp-go
-make build      # → ./whatsapp-mcp-go
+cd ../whatsapp-mcp
+make build      # → ./whatsapp-mcp
 ```
 
 It finds the store at `../whatsapp-bridge/store` relative to the binary; set `WHATSAPP_STORE_DIR` if it lives elsewhere.
@@ -104,7 +104,7 @@ It finds the store at `../whatsapp-bridge/store` relative to the binary; set `WH
 **stdio** (any OS; the client starts one server process per session, ~25 ms and ~20 MB each):
 
 ```bash
-claude mcp add -s user whatsapp -- /path/to/whatsapp-mcp/whatsapp-mcp-go/whatsapp-mcp-go
+claude mcp add -s user whatsapp -- /path/to/whatsapp-mcp/whatsapp-mcp/whatsapp-mcp
 ```
 
 Claude Desktop (`claude_desktop_config.json`) or Cursor (`~/.cursor/mcp.json`):
@@ -112,7 +112,7 @@ Claude Desktop (`claude_desktop_config.json`) or Cursor (`~/.cursor/mcp.json`):
 ```json
 {
   "mcpServers": {
-    "whatsapp": { "command": "/path/to/whatsapp-mcp/whatsapp-mcp-go/whatsapp-mcp-go" }
+    "whatsapp": { "command": "/path/to/whatsapp-mcp/whatsapp-mcp/whatsapp-mcp" }
   }
 }
 ```
@@ -143,7 +143,7 @@ cd whatsapp-bridge
 make install-service                          # after linking with `make run` once; stop that bridge first
 systemctl --user enable --now whatsapp-bridge
 
-cd ../whatsapp-mcp-go
+cd ../whatsapp-mcp
 make build && make install-service            # also creates ~/.config/whatsapp-mcp/env (0600) with a random WHATSAPP_MCP_TOKEN
 systemctl --user enable --now whatsapp-mcp    # http://127.0.0.1:8091/mcp
 
@@ -157,7 +157,7 @@ The MCP unit starts after the bridge but does not depend on it: while the bridge
 The HTTP transport can also be run by hand; it listens on localhost unless `--host` says otherwise, so put it behind TLS before exposing it:
 
 ```bash
-WHATSAPP_MCP_TOKEN=$(openssl rand -hex 24) ./whatsapp-mcp-go --transport http   # --host, --port
+WHATSAPP_MCP_TOKEN=$(openssl rand -hex 24) ./whatsapp-mcp --transport http   # --host, --port
 ```
 
 ### Several accounts
@@ -182,7 +182,7 @@ cgo is off by default on Windows. Install a C compiler (e.g. [MSYS2](https://www
 ```bash
 go env -w CGO_ENABLED=1
 cd whatsapp-bridge && go build -tags sqlite_fts5 -o whatsapp-bridge.exe .
-cd ../whatsapp-mcp-go && go build -tags sqlite_fts5 -o whatsapp-mcp-go.exe .
+cd ../whatsapp-mcp && go build -tags sqlite_fts5 -o whatsapp-mcp.exe .
 ```
 
 ### Upgrading
@@ -197,7 +197,7 @@ flowchart LR
     subgraph host["Your machine"]
         B["whatsapp-bridge<br/>(whatsmeow)"]
         S[("store/<br/>messages.db, whatsapp.db,<br/>media, audit.log")]
-        M["whatsapp-mcp-go"]
+        M["whatsapp-mcp"]
     end
     C1["MCP clients over stdio<br/>(Claude Code, Claude Desktop, Cursor)"]
     C2["MCP clients over streamable HTTP<br/>127.0.0.1:8091/mcp"]
@@ -213,7 +213,7 @@ flowchart LR
 ```
 
 - **Bridge** (`whatsapp-bridge/`): one process per account. Keeps the WhatsApp session in `store/whatsapp.db` (whatsmeow's keys, contacts, LID map) and messages, chats, reactions, polls and labels in `store/messages.db`. Downloads land in `store/<chat JID>/`, profile pictures in `store/avatars/`, transcripts in `store/transcripts/`, exports in `store/exports/`. Every change goes through the REST API, which applies the allowlists, read-only mode, rate limit and media roots, and writes `store/audit.log`.
-- **MCP server** (`whatsapp-mcp-go/`): reads both databases read-only and calls the bridge API for everything else. It does its media work in-process (image scaling, WebP stickers, Ogg/Opus decoding, all pure Go) and runs `whisper-cli` and `ffmpeg` as child processes. Built on the official [MCP Go SDK](https://github.com/modelcontextprotocol/go-sdk). `whatsapp-mcp-go export <chat JID> --format html --media` exports a chat from the command line.
+- **MCP server** (`whatsapp-mcp/`): reads both databases read-only and calls the bridge API for everything else. It does its media work in-process (image scaling, WebP stickers, Ogg/Opus decoding, all pure Go) and runs `whisper-cli` and `ffmpeg` as child processes. Built on the official [MCP Go SDK](https://github.com/modelcontextprotocol/go-sdk). `whatsapp-mcp export <chat JID> --format html --media` exports a chat from the command line.
 
 The store contains your messages and your login. Never share it; the bridge keeps it `0700` and its files `0600`.
 
@@ -288,7 +288,7 @@ Environment variables. The bridge reads them at start; with systemd, put them in
 `transcribe_voice_message` needs whisper.cpp's `whisper-cli`. Build it once (git, a C/C++ compiler, cmake; without cmake the script fetches it with `uvx`):
 
 ```bash
-JOBS=4 whatsapp-mcp-go/media/transcribe/build-whisper.sh   # → ~/.local/share/whatsapp-mcp/whisper.cpp/bin/whisper-cli
+JOBS=4 whatsapp-mcp/media/transcribe/build-whisper.sh   # → ~/.local/share/whatsapp-mcp/whisper.cpp/bin/whisper-cli
 ```
 
 Link it into `~/.local/bin` (the MCP unit has that in `PATH`) or set `WHATSAPP_WHISPER_CLI`. The first transcription downloads the model (`small`: 466 MiB). Voice notes are decoded in Go, so whisper-cli needs no ffmpeg; MP3, WAV and FLAC go to whisper-cli directly (M4A/AAC is not supported). An 11-second note takes about 5–6 s with `small` on 8 threads; passing `language` skips detection and is faster. Without whisper-cli the tool says how to build it, and cached transcripts are still shown.
@@ -325,7 +325,7 @@ def verify(secret: bytes, headers, body: bytes) -> bool:
 | Events, export | `wait_for_events`, `export_chat` |
 | Bridge, accounts | `get_bridge_status` (connection, session warnings, limits, pairing QR), `reconnect_bridge`, `list_accounts` |
 
-Each message line shows the message id and chat JID that the other tools take, plus the sender's name, media details, the quoted message, reactions, poll votes, edits, deletions and the voice transcript. The full parameter documentation is in [`whatsapp-mcp-go/internal/tools/table.go`](whatsapp-mcp-go/internal/tools/table.go) and is what clients see.
+Each message line shows the message id and chat JID that the other tools take, plus the sender's name, media details, the quoted message, reactions, poll votes, edits, deletions and the voice transcript. The full parameter documentation is in [`whatsapp-mcp/internal/tools/table.go`](whatsapp-mcp/internal/tools/table.go) and is what clients see.
 
 ## Resources and events
 
@@ -408,8 +408,8 @@ Report vulnerabilities as described in [SECURITY.md](SECURITY.md).
 
 ```bash
 cd whatsapp-bridge && make test      # go vet + go test, with FTS5
-cd whatsapp-mcp-go && make test      # the server and its media packages
-cd whatsapp-mcp-go && make lint      # gofmt + golangci-lint (the version CI pins)
+cd whatsapp-mcp && make test      # the server and its media packages
+cd whatsapp-mcp && make lint      # gofmt + golangci-lint (the version CI pins)
 ```
 
 For the bridge, lint as CI does with `gofmt -l .` and `go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.14.0 run --build-tags sqlite_fts5`.
@@ -430,7 +430,7 @@ Layout:
   - `policy/`: allowlists, rate limit, media roots.
   - `config/`: the environment settings.
   - `audit/`, `jid/`, `logging/`: the audit log, JID parsing, the slog setup.
-- `whatsapp-mcp-go/`: `main.go` (flags, signals, the `export` subcommand) and `internal/`: `tools` (`table.go` holds every tool's parameters, description and handler; the handlers live in one file per area, `args.go` coerces arguments, `result.go` shapes results and errors), `resources` (resources and the event pump), `server` (stdio and HTTP serving), `store` (the read-only SQLite store and the read allowlist), `bridgeapi` (bridge API client), `render` (message lines), `export`, `mediaconv` (conversions, media roots), `account`, `config`, `logging`, `pyfmt` (Python-compatible output). `media/` holds `audio`, `transcribe`, `sticker` and `modelimage`, pure Go; transcription runs `whisper-cli` as a child process.
+- `whatsapp-mcp/`: `main.go` (flags, signals, the `export` subcommand) and `internal/`: `tools` (`table.go` holds every tool's parameters, description and handler; the handlers live in one file per area, `args.go` coerces arguments, `result.go` shapes results and errors), `resources` (resources and the event pump), `server` (stdio and HTTP serving), `store` (the read-only SQLite store and the read allowlist), `bridgeapi` (bridge API client), `render` (message lines), `export`, `mediaconv` (conversions, media roots), `account`, `config`, `logging`, `pyfmt` (Python-compatible output). `media/` holds `audio`, `transcribe`, `sticker` and `modelimage`, pure Go; transcription runs `whisper-cli` as a child process.
 
 Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
 

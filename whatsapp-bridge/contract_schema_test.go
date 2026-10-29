@@ -15,7 +15,7 @@ import (
 )
 
 // upstreamSchema is the messages.db of the original upstream bridge, which
-// live stores were upgraded from (the same as whatsapp-mcp-go's fixture).
+// live stores were upgraded from (the same as whatsapp-mcp's fixture).
 const upstreamSchema = `
 CREATE TABLE chats (jid TEXT PRIMARY KEY, name TEXT, last_message_time TIMESTAMP);
 CREATE TABLE messages (id TEXT, chat_jid TEXT, sender TEXT, content TEXT, timestamp TIMESTAMP,
@@ -95,7 +95,7 @@ func TestContractSchemaUpgraded(t *testing.T) {
 }
 
 // TestContractSchemaSQL writes the executable DDL of a fresh store, the
-// file whatsapp-mcp-go builds its fixtures on (its
+// file whatsapp-mcp builds its fixtures on (its
 // testdata/golden/bridge-schema.sql must be byte-identical), and checks it
 // runs on an empty database.
 func TestContractSchemaSQL(t *testing.T) {

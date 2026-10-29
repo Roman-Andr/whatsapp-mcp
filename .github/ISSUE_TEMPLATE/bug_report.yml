@@ -11,7 +11,7 @@ body:
       label: Component
       options:
         - Bridge (whatsapp-bridge)
-        - MCP server (whatsapp-mcp-go)
+        - MCP server (whatsapp-mcp)
         - Not sure
     validations:
       required: true
