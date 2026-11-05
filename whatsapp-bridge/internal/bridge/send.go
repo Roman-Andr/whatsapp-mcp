@@ -237,11 +237,11 @@ func (b *Bridge) readMediaFile(mediaPath string) ([]byte, error) {
 	if err := b.checkMediaFile(mediaPath); err != nil {
 		return nil, err
 	}
-	data, err := os.ReadFile(mediaPath) //nolint:gosec // G304: mediaPath passed the media roots and the store check above
+	mediaData, err := os.ReadFile(mediaPath) //nolint:gosec // G304: mediaPath passed the media roots and the store check above
 	if err != nil {
 		return nil, fmt.Errorf("Error reading media file: %w", err) //nolint:staticcheck // the capitalised text is the API response
 	}
-	return data, nil
+	return mediaData, nil
 }
 
 // buildMediaMessage uploads a file and fills the matching message type.
