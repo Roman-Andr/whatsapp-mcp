@@ -7,7 +7,7 @@ Give an AI agent (Claude Code, Claude Desktop, Cursor, any MCP client) access to
 [![License: MIT](https://img.shields.io/github/license/Roman-Andr/whatsapp-mcp)](LICENSE)
 [![Go](https://img.shields.io/github/go-mod/go-version/Roman-Andr/whatsapp-mcp?filename=whatsapp-mcp%2Fgo.mod)](whatsapp-mcp/go.mod)
 
-The **bridge** (`whatsapp-bridge/`) links to your account as a WhatsApp Web device through [whatsmeow](https://github.com/tulir/whatsmeow), keeps every message in a local SQLite store and serves a token-protected REST API on localhost. The **MCP server** (`whatsapp-mcp/`) reads that store and calls the bridge for anything that changes state, exposing 59 tools, resources and live events over stdio or streamable HTTP.
+The **bridge** (`whatsapp-bridge/`) links to your account as a WhatsApp Web device through [whatsmeow](https://github.com/tulir/whatsmeow), keeps every message in a local SQLite store and serves a token-protected REST API on localhost. The **MCP server** (`whatsapp-mcp/`) reads that store and calls the bridge for anything that changes state, exposing 60 tools, resources and live events over stdio or streamable HTTP.
 
 Nothing leaves your machine except through WhatsApp itself and the tool results your MCP client passes to its model. The bridge enforces the limits that matter (send and read allowlists, read-only mode, a human-pace send rate, the directories files may be sent from), so they hold even when an agent is prompt-injected.
 
@@ -39,7 +39,7 @@ Nothing leaves your machine except through WhatsApp itself and the tool results 
 - Older history on demand (`request_chat_history` asks the phone).
 
 **Sending**
-- Text with replies and @mentions, files (real MIME type and file name), voice messages (converted with ffmpeg), stickers (any image converted to WebP), polls, locations, contact cards, forwards, statuses.
+- Text with replies and @mentions, files (real MIME type and file name), albums of 2–10 pictures and videos, voice messages (converted with ffmpeg), stickers (any image converted to WebP), polls, locations, contact cards, forwards, statuses.
 - Reactions, editing and deleting your own messages (admins can delete anyone's in their groups), voting in polls, read receipts, typing indicator.
 
 **Media and voice**
@@ -308,13 +308,13 @@ def verify(secret: bytes, headers, body: bytes) -> bool:
 
 ## MCP tools
 
-59 tools. Read tools are annotated `readOnlyHint`; sending and group tools `destructiveHint` + `openWorldHint`, so clients can auto-approve reads and ask before sends. With `WHATSAPP_READ_ONLY` only the read tools are listed. With several accounts every tool takes `account`.
+60 tools. Read tools are annotated `readOnlyHint`; sending and group tools `destructiveHint` + `openWorldHint`, so clients can auto-approve reads and ask before sends. With `WHATSAPP_READ_ONLY` only the read tools are listed. With several accounts every tool takes `account`.
 
 | Area | Tools |
 |---|---|
 | Messages | `list_messages` (filter by chat, sender, dates, text, starred; with context), `get_message_context`, `request_chat_history` |
 | Chats | `list_chats`, `list_unread_chats`, `get_chat`, `get_direct_chat_by_contact`, `get_contact_chats`, `get_last_interaction` |
-| Sending | `send_message` (reply, mentions), `send_file`, `send_audio_message`, `send_sticker`, `send_poll`, `send_location`, `send_contact`, `forward_message`, `send_reaction`, `vote_poll` |
+| Sending | `send_message` (reply, mentions), `send_file`, `send_album`, `send_audio_message`, `send_sticker`, `send_poll`, `send_location`, `send_contact`, `forward_message`, `send_reaction`, `vote_poll` |
 | Own messages | `edit_message` (text, within 20 minutes), `delete_message` (for everyone), `mark_read`, `send_typing` |
 | Media | `download_media`, `view_media`, `transcribe_voice_message` |
 | Groups | `get_group_info`, `create_group` (also communities), `join_group`, `leave_group`, `update_group_participants`, `update_group_settings`, `get_group_join_requests`, `update_group_join_requests`, `reset_group_invite_link`, `set_disappearing_messages` |
@@ -326,6 +326,16 @@ def verify(secret: bytes, headers, body: bytes) -> bool:
 | Bridge, accounts | `get_bridge_status` (connection, session warnings, limits, pairing QR), `reconnect_bridge`, `list_accounts` |
 
 Each message line shows the message id and chat JID that the other tools take, plus the sender's name, media details, the quoted message, reactions, poll votes, edits, deletions and the voice transcript. The full parameter documentation is in [`whatsapp-mcp/internal/tools/table.go`](whatsapp-mcp/internal/tools/table.go) and is what clients see.
+
+### Albums
+
+`send_album` (`POST /api/album`) sends 2 to 10 pictures and videos so they arrive as one WhatsApp album, with an optional caption under the first item.
+
+- **Types:** JPEG, PNG and WebP images and MP4, MOV and 3GP videos (by extension), mixed freely. GIFs, documents and audio are refused; use `send_file` for those and for a single file. No replies or mentions.
+- **How it is sent:** every file is checked (send allowlist, media roots, store secrets, type) and uploaded first; nothing is sent if any of that fails. Then the bridge sends an album message that states the number of images and videos, followed by the items in order. Each item is an ordinary image or video message whose `messageAssociation` (`MEDIA_ALBUM`) points at the album message. The album message has no content of its own, so only the items are stored and appear in `list_messages`.
+- **Pace:** one call counts as one send against the rate limit, and the bridge waits 2 seconds before each message of an album, so an album of 10 takes about half a minute.
+- **If an item fails:** the album stops there. Items already delivered stay (nothing is retracted automatically); the answer has `success: false` and lists the album id, the delivered item ids and the item that failed, and `delete_message` removes delivered ones. If the album message itself cannot be sent, nothing was delivered.
+- **Not verified against WhatsApp's servers:** the pinned whatsmeow has the album protobuf messages but no helper and no documentation of the wire behaviour, and the tests use a fake client, so whether every client groups the items into one album has to be confirmed with a real send.
 
 ## Resources and events
 
@@ -351,6 +361,7 @@ The bridge API listens on `127.0.0.1:8080` and requires `Authorization: Bearer <
 | `POST /api/location` | `recipient`, `latitude`, `longitude`, `name?`, `address?` | Send a location |
 | `POST /api/contact` | `recipient`, `name`, `phone` or `vcard` | Send a contact card |
 | `POST /api/sticker` | `recipient`, `media_path` (.webp), `reply_to_message_id?` | Send a sticker |
+| `POST /api/album` | `recipient`, `media_paths` (2–10), `caption?` | Send pictures and videos as one album; returns the album's `message_id` (see [Albums](#albums)) |
 | `POST /api/forward` | `chat_jid`, `message_id`, `recipient` | Forward a message |
 | `POST /api/star` | `chat_jid`, `message_id`, `starred` | Star or unstar |
 | `POST /api/read` | `chat_jid`, `message_ids?` | Read receipts; without ids the newest 20 incoming messages |
@@ -400,6 +411,7 @@ WhatsApp does not allow unofficial clients. This project uses the same multi-dev
 - **Media roots:** files are only sent from `WHATSAPP_MEDIA_ROOTS` (resolved through symlinks; hidden files and the store's own databases and token are refused), so an agent cannot be talked into sending `~/.ssh` or the session database. The bridge publishes its roots in `messages.db`, and the MCP server checks them before converting a file into a sticker or voice message.
 - **Other people's edits and deletions** are checked against the author, so a group member cannot rewrite your stored history.
 - **Audit log:** every state-changing call, allowed or refused, is a JSON line in `store/audit.log`.
+- **Albums** are one call but up to 11 messages (the album message and each item); the bridge spaces them 2 seconds apart, and the rate limit counts the call once. Keep that in mind when raising `WHATSAPP_SEND_BURST`.
 - **Presence** (`WHATSAPP_PRESENCE`) keeps the bridge online and silences your phone's notifications; it is off by default.
 
 Report vulnerabilities as described in [SECURITY.md](SECURITY.md).
