@@ -3,7 +3,7 @@ module github.com/Roman-Andr/whatsapp-mcp/whatsapp-mcp
 go 1.26.0
 
 require (
-	github.com/darui3018823/opus v1.7.1
+	github.com/darui3018823/opus v1.8.0
 	github.com/gen2brain/webp v0.6.4
 	github.com/mattn/go-sqlite3 v1.14.52
 	github.com/modelcontextprotocol/go-sdk v1.8.0
