@@ -66,6 +66,34 @@ func sendFile(ctx context.Context, c *Call) (any, error) {
 	return sendResult(sendFileTo(ctx, c, a.String("recipient"), a.String("media_path"), a.String("caption"), a.String("reply_to_message_id"))), nil
 }
 
+// Limits of an album, as the bridge enforces them (whatsapp-bridge/internal/bridge/album.go).
+const (
+	minAlbumItems = 2
+	maxAlbumItems = 10
+)
+
+// sendAlbum sends several pictures and videos as one album. Every file is
+// checked here first, like send_file's; the bridge checks the count and types
+// again before it uploads anything.
+func sendAlbum(ctx context.Context, c *Call) (any, error) {
+	recipient, paths := c.Args.String("recipient"), c.Args.StringSlice("media_paths")
+	if recipient == "" {
+		return sendResult(bridgeapi.Fail("Recipient must be provided")), nil
+	}
+	if n := len(paths); n < minAlbumItems || n > maxAlbumItems {
+		return sendResult(bridgeapi.Fail(fmt.Sprintf("An album takes %d to %d files, got %d (use send_file for a single file)", minAlbumItems, maxAlbumItems, n))), nil
+	}
+	resolved := make([]string, len(paths))
+	for i, p := range paths {
+		path, refused := sendable(ctx, c, recipient, p, true)
+		if refused != nil {
+			return sendResult(*refused), nil
+		}
+		resolved[i] = path
+	}
+	return sendResult(c.Bridge.Album(ctx, pyfmt.NewOMap("recipient", recipient, "media_paths", resolved, "caption", c.Args.String("caption")))), nil
+}
+
 // sendAudioMessage sends audio as a voice message, converted to Ogg/Opus
 // unless it is one already.
 func sendAudioMessage(ctx context.Context, c *Call) (any, error) {

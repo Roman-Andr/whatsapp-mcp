@@ -213,24 +213,42 @@ func (b *Bridge) applyMentions(ctx context.Context, chat types.JID, text string,
 	return text, jids, nil
 }
 
-// buildMediaMessage uploads a file and fills the matching message type.
-func (b *Bridge) buildMediaMessage(ctx context.Context, msg *waE2E.Message, mediaPath, caption string, ci *waE2E.ContextInfo) (content.MediaInfo, error) {
+// checkMediaFile checks that mediaPath, already resolved against the media
+// roots, is an absolute regular file that is not one of the store's secrets.
+func (b *Bridge) checkMediaFile(mediaPath string) error {
 	if !filepath.IsAbs(mediaPath) {
-		return content.MediaInfo{}, fmt.Errorf("media path must be absolute: %s", mediaPath)
+		return fmt.Errorf("media path must be absolute: %s", mediaPath)
 	}
 	st, err := os.Stat(mediaPath)
 	if err != nil {
-		return content.MediaInfo{}, fmt.Errorf("Error reading media file: %w", err) //nolint:staticcheck // the capitalised text is the API response
+		return fmt.Errorf("Error reading media file: %w", err) //nolint:staticcheck // the capitalised text is the API response
 	}
 	if !st.Mode().IsRegular() {
-		return content.MediaInfo{}, fmt.Errorf("media path is not a regular file: %s", mediaPath)
+		return fmt.Errorf("media path is not a regular file: %s", mediaPath)
 	}
 	if isStoreSecret(b.storeDir, mediaPath) {
-		return content.MediaInfo{}, fmt.Errorf("refusing to send %s: files in the bridge's store directory hold the session, messages and API token", mediaPath)
+		return fmt.Errorf("refusing to send %s: files in the bridge's store directory hold the session, messages and API token", mediaPath)
+	}
+	return nil
+}
+
+// readMediaFile is checkMediaFile followed by reading the file.
+func (b *Bridge) readMediaFile(mediaPath string) ([]byte, error) {
+	if err := b.checkMediaFile(mediaPath); err != nil {
+		return nil, err
 	}
 	mediaData, err := os.ReadFile(mediaPath) //nolint:gosec // G304: mediaPath passed the media roots and the store check above
 	if err != nil {
-		return content.MediaInfo{}, fmt.Errorf("Error reading media file: %w", err) //nolint:staticcheck // the capitalised text is the API response
+		return nil, fmt.Errorf("Error reading media file: %w", err) //nolint:staticcheck // the capitalised text is the API response
+	}
+	return mediaData, nil
+}
+
+// buildMediaMessage uploads a file and fills the matching message type.
+func (b *Bridge) buildMediaMessage(ctx context.Context, msg *waE2E.Message, mediaPath, caption string, ci *waE2E.ContextInfo) (content.MediaInfo, error) {
+	mediaData, err := b.readMediaFile(mediaPath)
+	if err != nil {
+		return content.MediaInfo{}, err
 	}
 
 	mimeType := content.MIMEType(mediaPath)

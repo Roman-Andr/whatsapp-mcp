@@ -86,6 +86,12 @@ func toolCases() []toolCase {
 			return map[string]any{"recipient": group, "media_path": writeFile(t, filepath.Join(s.Dir, "r.pdf"), []byte("%PDF")), "caption": "Invoice", "reply_to_message_id": "A1"}
 		}, calls: `[["send",{"media_path":"STORE_DIR/r.pdf","message":"Invoice","recipient":"120363431597928274@g.us","reply_to_message_id":"A1"}]]`, want: `{"message":"ok","message_id":"NEW","success":true}`},
 		{name: "send_file missing", tool: "send_file", args: map[string]any{"recipient": group, "media_path": "/nonexistent/r.pdf"}, calls: "null", want: `{"message":"Media file not found: /nonexistent/r.pdf","message_id":null,"success":false}`},
+		{name: "send_album", tool: "send_album", setup: func(t *testing.T, s *testStore, b *storetest.Bridge) map[string]any {
+			t.Helper()
+			return map[string]any{"recipient": group, "caption": "Depot", "media_paths": []string{
+				writeFile(t, filepath.Join(s.Dir, "a.jpg"), []byte("\xff\xd8")), writeFile(t, filepath.Join(s.Dir, "b.mp4"), []byte("ftyp"))}}
+		}, calls: `[["album",{"caption":"Depot","media_paths":["STORE_DIR/a.jpg","STORE_DIR/b.mp4"],"recipient":"120363431597928274@g.us"}]]`, want: `{"message":"ok","message_id":"NEW","success":true}`},
+		{name: "send_album with one file", tool: "send_album", args: map[string]any{"recipient": group, "media_paths": []string{"/a.jpg"}}, calls: "null", want: `{"message":"An album takes 2 to 10 files, got 1 (use send_file for a single file)","message_id":null,"success":false}`},
 		{name: "send_audio_message", tool: "send_audio_message", setup: func(t *testing.T, s *testStore, b *storetest.Bridge) map[string]any {
 			t.Helper()
 			return map[string]any{"recipient": group, "media_path": writeFile(t, filepath.Join(s.Dir, "v.ogg"), []byte("OggS"))}

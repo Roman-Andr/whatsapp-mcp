@@ -3,6 +3,7 @@ package bridge
 import (
 	"context"
 	"log/slog"
+	"time"
 
 	"github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/audit"
 	hub "github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge/internal/events"
@@ -41,6 +42,7 @@ type Bridge struct {
 	reconnector     *wa.Reconnector // POST /api/connection/reconnect
 
 	autoDownload *media.Queue
+	albumGap     time.Duration // pause between the messages of an album
 }
 
 // Deps is what a Bridge is built from.
@@ -79,6 +81,9 @@ type Deps struct {
 	StoreDir string
 	// Restart receives a value when the bridge must exit to pair again.
 	Restart chan struct{}
+	// AlbumGap is the pause between the messages of an album; zero means
+	// DefaultAlbumGap, negative none (tests).
+	AlbumGap time.Duration
 }
 
 // CallRejection is WHATSAPP_REJECT_CALLS and WHATSAPP_REJECT_CALLS_MESSAGE.
@@ -113,6 +118,10 @@ func New(d Deps) *Bridge {
 		restart:         d.Restart,
 		reconnector:     d.Reconnector,
 		autoDownload:    d.AutoDownload,
+		albumGap:        d.AlbumGap,
+	}
+	if b.albumGap == 0 {
+		b.albumGap = DefaultAlbumGap
 	}
 	if b.log == nil {
 		b.log = slog.New(slog.DiscardHandler)

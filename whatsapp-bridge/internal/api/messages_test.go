@@ -153,7 +153,7 @@ func TestMessageRoutes(t *testing.T) {
 			},
 			code: 200, want: `{"success":true,"message":"ok","filename":"a.jpg","path":"/a.jpg"}` + "\n",
 			calls: []string{"DownloadMedia"}, timeout: downloadTimeout},
-		// vote, contact, sticker, forward, star
+		// vote, contact, sticker, album, forward, star
 		{name: "vote without message", path: "/api/poll/vote", body: `{"chat_jid":"c","options":["A","B"]}`,
 			code: 400, want: "chat_jid and message_id are required\n",
 			audit: []audit.Entry{{Endpoint: "vote", Chat: "c", Text: "A / B", Result: "chat_jid and message_id are required"}}},
@@ -180,6 +180,31 @@ func TestMessageRoutes(t *testing.T) {
 					t.Errorf("request %+v", req)
 				}
 			}},
+		{name: "album without recipient", path: "/api/album", body: `{"media_paths":["/a.jpg","/b.jpg"]}`,
+			code: 400, want: "recipient is required\n",
+			audit: []audit.Entry{{Endpoint: "album", Text: "[album 2 files] ", Result: "recipient is required"}}},
+		{name: "album with one file", path: "/api/album", body: `{"recipient":"r","media_paths":["/a.jpg"],"caption":"hi"}`,
+			code: 400, want: "media_paths must hold 2 to 10 files, got 1\n",
+			audit: []audit.Entry{{Endpoint: "album", Chat: "r", Text: "[album 1 files] hi", Result: "media_paths must hold 2 to 10 files, got 1"}}},
+		{name: "album with eleven files", path: "/api/album", body: `{"recipient":"r","media_paths":["1","2","3","4","5","6","7","8","9","10","11"]}`,
+			code: 400, want: "media_paths must hold 2 to 10 files, got 11\n",
+			audit: []audit.Entry{{Endpoint: "album", Chat: "r", Text: "[album 11 files] ", Result: "media_paths must hold 2 to 10 files, got 11"}}},
+		{name: "album ok", path: "/api/album", body: `{"recipient":"r","media_paths":["/a.jpg","/b.mp4"],"caption":"hi"}`, fake: answer(sentOK),
+			code: 200, want: sentOKBody, calls: []string{"SendAlbum"},
+			audit: []audit.Entry{{Endpoint: "album", Chat: "r", Text: "[album 2 files] hi", Success: true, Result: "sent", MessageID: "M1"}},
+			check: func(t *testing.T, f *fakeService) {
+				t.Helper()
+				if req := f.last().req.(bridge.AlbumRequest); req.Caption != "hi" || len(req.MediaPaths) != 2 || req.MediaPaths[1] != "/b.mp4" {
+					t.Errorf("request %+v", req)
+				}
+			}},
+		{name: "album refused", path: "/api/album", body: `{"recipient":"x","media_paths":["/a.jpg","/b.jpg"]}`, fake: answer(refused),
+			code: 403, want: refuseBody, calls: []string{"SendAlbum"},
+			audit: []audit.Entry{{Endpoint: "album", Chat: "x", Text: "[album 2 files] ", Result: refused.Message}}},
+		{name: "album rate limited", path: "/api/album", body: `{}`, deps: exhausted,
+			code: 429, want: limitBody, audit: []audit.Entry{{Endpoint: "album", Result: limitMsg}}},
+		{name: "album read-only", path: "/api/album", body: `{}`, deps: readOnly,
+			code: 403, want: readOnlyBody, audit: []audit.Entry{{Endpoint: "album", Result: msgReadOnly}}},
 		{name: "forward without recipient", path: "/api/forward", body: `{"chat_jid":"c","message_id":"T"}`,
 			code: 400, want: "chat_jid, message_id and recipient are required\n",
 			audit: []audit.Entry{{Endpoint: "forward", TargetID: "c/T", Result: "chat_jid, message_id and recipient are required"}}},

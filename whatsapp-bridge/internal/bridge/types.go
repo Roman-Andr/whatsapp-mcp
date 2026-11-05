@@ -22,6 +22,16 @@ type SendMessageRequest struct {
 	Sticker bool `json:"sticker,omitempty"`
 }
 
+// AlbumRequest is the body of POST /api/album.
+type AlbumRequest struct {
+	Recipient string `json:"recipient"`
+	// MediaPaths are the pictures and videos, in album order: between
+	// MinAlbumItems and MaxAlbumItems of them.
+	MediaPaths []string `json:"media_paths"`
+	// Caption is shown under the first item.
+	Caption string `json:"caption,omitempty"`
+}
+
 // SendMessageResponse is the response of POST /api/send and the other
 // state-changing routes.
 type SendMessageResponse struct {

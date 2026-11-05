@@ -359,6 +359,32 @@ var toolTable = []toolSpec{
     `,
 	},
 	{
+		name: "send_album", ann: annSend, out: outSendResult,
+		handle: sendAlbum,
+		params: []param{
+			{name: "recipient", typ: "string", required: true},
+			{name: "media_paths", typ: "array", required: true},
+			{name: "caption", typ: "string", def: ""},
+		},
+		doc: `Send 2 to 10 pictures and videos in one call so they arrive in the chat as one WhatsApp album.
+
+    Only JPEG, PNG and WebP images and MP4, MOV and 3GP videos can be part of an album, mixed freely;
+    the bridge refuses anything else before sending. Use send_file for a single file or for GIFs and
+    documents. Every file is checked and uploaded first; then an album message and the items go out one
+    by one with a pause of 2 seconds between them, so an album of 10 takes about half a minute.
+    If an item fails to send, the rest are not sent and nothing is retracted: the result says which
+    items were delivered (with their message ids) and which failed; delete_message removes delivered ones.
+
+    Args:
+        recipient: Phone number or JID of the person or group
+        media_paths: Absolute paths of the files, in album order (2 to 10). Each must be inside the bridge's media roots: by default downloaded media, ~/.local/share/whatsapp-mcp/outbox or the temp directory
+        caption: Optional text shown under the first item
+
+    Returns:
+        A dictionary containing success status, a status message and the album's message id
+    `,
+	},
+	{
 		name: "send_sticker", ann: annSend, out: outSendResult,
 		handle: sendSticker,
 		params: []param{
