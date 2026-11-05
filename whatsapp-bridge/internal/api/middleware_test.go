@@ -86,8 +86,8 @@ func TestRequireToken(t *testing.T) {
 func TestRouteTable(t *testing.T) {
 	t.Parallel()
 	routes := newHandler(Deps{}).routes()
-	if len(routes) != 42 {
-		t.Errorf("%d routes, want 42", len(routes))
+	if len(routes) != 43 {
+		t.Errorf("%d routes, want 43", len(routes))
 	}
 	kinds := map[policy.Kind]int{}
 	seen := map[string]bool{}
@@ -104,7 +104,7 @@ func TestRouteTable(t *testing.T) {
 			t.Errorf("%s: guarded without an audit endpoint", r.path)
 		}
 	}
-	want := map[policy.Kind]int{policy.ReachesOthers: 19, policy.SignalOnly: 2, policy.OwnAccount: 7, noGuard: 14}
+	want := map[policy.Kind]int{policy.ReachesOthers: 20, policy.SignalOnly: 2, policy.OwnAccount: 7, noGuard: 14}
 	for k, n := range want {
 		if kinds[k] != n {
 			t.Errorf("kind %d: %d routes, want %d", k, kinds[k], n)

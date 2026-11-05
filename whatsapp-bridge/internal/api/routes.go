@@ -50,6 +50,7 @@ const (
 	epVote             = "vote"
 	epContact          = "contact"
 	epSticker          = "sticker"
+	epAlbum            = "album"
 	epForward          = "forward"
 	epStar             = "star"
 )
@@ -97,6 +98,7 @@ func (h *handler) routes() []route {
 		{"/api/poll/vote", epVote, policy.ReachesOthers, h.vote},
 		{"/api/contact", epContact, policy.ReachesOthers, h.sendContact},
 		{"/api/sticker", epSticker, policy.ReachesOthers, h.sticker},
+		{"/api/album", epAlbum, policy.ReachesOthers, h.album},
 		{"/api/forward", epForward, policy.ReachesOthers, h.forward},
 		{"/api/star", epStar, policy.OwnAccount, h.star},
 		// session.go

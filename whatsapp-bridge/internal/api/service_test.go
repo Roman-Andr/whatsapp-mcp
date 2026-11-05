@@ -138,6 +138,10 @@ func (f *fakeService) SendContact(ctx context.Context, req bridge.ContactRequest
 	return f.send(ctx, "SendContact", req)
 }
 
+func (f *fakeService) SendAlbum(ctx context.Context, req bridge.AlbumRequest) bridge.SendMessageResponse {
+	return f.send(ctx, "SendAlbum", req)
+}
+
 func (f *fakeService) Forward(ctx context.Context, req bridge.ForwardRequest) bridge.SendMessageResponse {
 	return f.send(ctx, "Forward", req)
 }

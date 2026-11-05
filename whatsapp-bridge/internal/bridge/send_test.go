@@ -358,3 +358,14 @@ func TestStoreSecretsCannotBeSent(t *testing.T) {
 		t.Errorf("err %v", err)
 	}
 }
+
+// writeStoreFile creates a file directly in the store directory, where the
+// session database and the API token live.
+func writeStoreFile(t *testing.T, b *testBridge, name string) string {
+	t.Helper()
+	path := filepath.Join(b.dir, name)
+	if err := os.WriteFile(path, []byte("secret"), 0600); err != nil {
+		t.Fatal(err)
+	}
+	return path
+}

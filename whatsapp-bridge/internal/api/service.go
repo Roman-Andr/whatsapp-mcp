@@ -21,6 +21,7 @@ type Service interface {
 	SendTyping(ctx context.Context, req bridge.TypingRequest) bridge.SendMessageResponse
 	VotePoll(ctx context.Context, req bridge.VoteRequest) bridge.SendMessageResponse
 	SendContact(ctx context.Context, req bridge.ContactRequest) bridge.SendMessageResponse
+	SendAlbum(ctx context.Context, req bridge.AlbumRequest) bridge.SendMessageResponse
 	Forward(ctx context.Context, req bridge.ForwardRequest) bridge.SendMessageResponse
 	Star(ctx context.Context, req bridge.StarRequest) bridge.SendMessageResponse
 	RequestHistory(ctx context.Context, req bridge.HistoryRequest) bridge.SendMessageResponse

@@ -215,6 +215,25 @@ func (h *handler) sticker(w http.ResponseWriter, r *http.Request) {
 	respond(h, w, entry, h.Bridge.Send(r.Context(), req))
 }
 
+// album sends pictures and videos as one WhatsApp album. The count limits
+// are checked here so that a bad request is a 400; the bridge checks them too.
+func (h *handler) album(w http.ResponseWriter, r *http.Request) {
+	req, ok := decode[bridge.AlbumRequest](w, r)
+	if !ok {
+		return
+	}
+	entry := audit.Entry{Endpoint: epAlbum, Chat: req.Recipient, Text: fmt.Sprintf("[album %d files] %s", len(req.MediaPaths), req.Caption)}
+	if req.Recipient == "" {
+		h.reject(w, entry, msgRecipientIsRequired)
+		return
+	}
+	if n := len(req.MediaPaths); n < bridge.MinAlbumItems || n > bridge.MaxAlbumItems {
+		h.reject(w, entry, fmt.Sprintf("media_paths must hold %d to %d files, got %d", bridge.MinAlbumItems, bridge.MaxAlbumItems, n))
+		return
+	}
+	respond(h, w, entry, h.Bridge.SendAlbum(r.Context(), req))
+}
+
 func (h *handler) forward(w http.ResponseWriter, r *http.Request) {
 	req, ok := decode[bridge.ForwardRequest](w, r)
 	if !ok {
