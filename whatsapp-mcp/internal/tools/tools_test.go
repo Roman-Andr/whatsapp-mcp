@@ -11,6 +11,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"slices"
 	"strings"
 	"testing"
 	"time"
@@ -146,6 +147,11 @@ func TestSendChecks(t *testing.T) {
 		{"audio without path", sendAudioMessage, Args{"recipient": group, "media_path": ""}, "Media path must be provided"},
 		{"sticker without recipient", sendSticker, Args{"recipient": "", "media_path": file}, "Recipient must be provided"},
 		{"status of a missing file", postStatus, Args{"media_path": "/nonexistent/x.jpg"}, "Media file not found: /nonexistent/x.jpg"},
+		{"album without recipient", sendAlbum, Args{"recipient": "", "media_paths": []string{file, file}}, "Recipient must be provided"},
+		{"album without files", sendAlbum, Args{"recipient": group}, "An album takes 2 to 10 files, got 0 (use send_file for a single file)"},
+		{"album of eleven", sendAlbum, Args{"recipient": group, "media_paths": slices.Repeat([]string{file}, 11)}, "An album takes 2 to 10 files, got 11 (use send_file for a single file)"},
+		{"album with a missing file", sendAlbum, Args{"recipient": group, "media_paths": []string{file, "/nonexistent/x.jpg"}}, "Media file not found: /nonexistent/x.jpg"},
+		{"album with an empty path", sendAlbum, Args{"recipient": group, "media_paths": []string{file, ""}}, "Media path must be provided"},
 		{"a directory", sendFile, Args{"recipient": group, "media_path": filepath.Dir(file)}, "Media file not found: " + filepath.Dir(file)},
 	}
 	for _, tc := range cases {
@@ -570,7 +576,7 @@ func TestListAccountsReportsEachBridge(t *testing.T) {
 // The table is consistent: 59 tools, each named once, each with a handler.
 func TestTableIsComplete(t *testing.T) {
 	t.Parallel()
-	if len(toolTable) != 59 {
+	if len(toolTable) != 60 {
 		t.Errorf("%d tools", len(toolTable))
 	}
 	names := map[string]bool{}

@@ -24,7 +24,7 @@ func TestToolsAreRegistered(t *testing.T) {
 	t.Parallel()
 	f := newStore(t)
 	tools := listTools(t, connectClient(t, f))
-	if len(tools) != 59 {
+	if len(tools) != 60 {
 		t.Errorf("%d tools", len(tools))
 	}
 	for _, name := range []string{"send_reaction", "request_chat_history", "view_media", "transcribe_voice_message",
@@ -51,7 +51,7 @@ func TestToolAnnotationsSeparateReadsFromSends(t *testing.T) {
 			}
 		}
 	}
-	for _, name := range []string{"send_message", "send_file", "send_audio_message", "send_reaction"} {
+	for _, name := range []string{"send_message", "send_file", "send_audio_message", "send_reaction", "send_album"} {
 		h := tools[name].Annotations
 		if h.ReadOnlyHint || !*h.DestructiveHint || !*h.OpenWorldHint {
 			t.Errorf("%s is not a send", name)
@@ -133,7 +133,7 @@ func TestReadOnlyModeHidesEveryChangingTool(t *testing.T) {
 	if tools["list_messages"] == nil || tools["download_media"] == nil {
 		t.Error("read tools hidden")
 	}
-	for _, name := range []string{"send_message", "send_file", "mark_read", "send_typing", "delete_message"} {
+	for _, name := range []string{"send_message", "send_file", "send_album", "mark_read", "send_typing", "delete_message"} {
 		if tools[name] != nil {
 			t.Errorf("%s visible", name)
 		}

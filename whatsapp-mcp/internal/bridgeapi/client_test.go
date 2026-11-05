@@ -124,6 +124,9 @@ func TestEndpointsPostTheirPayloads(t *testing.T) {
 		{"sticker", func(ctx context.Context, c *Client) any {
 			return c.Sticker(ctx, pyfmt.NewOMap("recipient", group, "media_path", "/s.webp"))
 		}, "sticker", `{"recipient":"` + group + `","media_path":"/s.webp"}`},
+		{"album", func(ctx context.Context, c *Client) any {
+			return c.Album(ctx, pyfmt.NewOMap("recipient", group, "media_paths", []string{"/a.jpg", "/b.mp4"}, "caption", ""))
+		}, "album", `{"recipient":"` + group + `","media_paths":["/a.jpg","/b.mp4"],"caption":""}`},
 		{"reconnect", func(ctx context.Context, c *Client) any { return c.ReconnectBridge(ctx) },
 			"connection/reconnect", `{}`},
 	}

@@ -26,6 +26,9 @@ const (
 	// DownloadTimeout bounds a media download, which may re-request the
 	// media from the phone.
 	DownloadTimeout = 150 * time.Second
+	// AlbumTimeout bounds sending an album: the bridge uploads every file and
+	// pauses between the messages (up to 10 items, 2 s apart).
+	AlbumTimeout = 5 * time.Minute
 	// StatusTimeout bounds a status check, which must answer quickly to
 	// be useful.
 	StatusTimeout = 10 * time.Second
@@ -526,6 +529,11 @@ func (c *Client) Send(ctx context.Context, payload *pyfmt.OMap) Outcome {
 // Sticker posts a sticker to /api/sticker.
 func (c *Client) Sticker(ctx context.Context, payload *pyfmt.OMap) Outcome {
 	return c.act(ctx, "sticker", payload)
+}
+
+// Album posts an album to /api/album.
+func (c *Client) Album(ctx context.Context, payload *pyfmt.OMap) Outcome {
+	return OutcomeOf(c.post(ctx, "album", payload, AlbumTimeout))
 }
 
 // Events calls fn with bridge events (message, edit, delete, reaction,
