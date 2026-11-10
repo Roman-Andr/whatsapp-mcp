@@ -6,6 +6,7 @@ Give an AI agent (Claude Code, Claude Desktop, Cursor, any MCP client) access to
 [![CodeQL](https://github.com/Roman-Andr/whatsapp-mcp/actions/workflows/codeql.yml/badge.svg)](https://github.com/Roman-Andr/whatsapp-mcp/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/github/license/Roman-Andr/whatsapp-mcp)](LICENSE)
 [![Go](https://img.shields.io/github/go-mod/go-version/Roman-Andr/whatsapp-mcp?filename=whatsapp-mcp%2Fgo.mod)](whatsapp-mcp/go.mod)
+[![M8ven Score](https://m8ven.ai/badge/mcp/roman-andr-whatsapp-mcp-mnp31i?v=cabf8a99afbeaf9d28b4781deee6afb7)](https://m8ven.ai/mcp/roman-andr-whatsapp-mcp-mnp31i?s=readme)
 
 The **bridge** (`whatsapp-bridge/`) links to your account as a WhatsApp Web device through [whatsmeow](https://github.com/tulir/whatsmeow), keeps every message in a local SQLite store and serves a token-protected REST API on localhost. The **MCP server** (`whatsapp-mcp/`) reads that store and calls the bridge for anything that changes state, exposing 60 tools, resources and live events over stdio or streamable HTTP.
 
