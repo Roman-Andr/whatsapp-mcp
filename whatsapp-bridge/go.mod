@@ -3,7 +3,7 @@ module github.com/Roman-Andr/whatsapp-mcp/whatsapp-bridge
 go 1.26.0
 
 require (
-	github.com/mattn/go-sqlite3 v1.14.52
+	github.com/mattn/go-sqlite3 v1.14.53
 	github.com/mdp/qrterminal v1.0.1
 	go.mau.fi/whatsmeow v0.0.0-20261028111316-d24d079a3755
 	google.golang.org/protobuf v1.36.12
