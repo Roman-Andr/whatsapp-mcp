@@ -21,7 +21,7 @@ jobs:
         working-directory: whatsapp-bridge
     steps:
       - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-go@v7.0.0
+      - uses: actions/setup-go@v7.1.0
         with:
           go-version-file: whatsapp-bridge/go.mod
           cache-dependency-path: whatsapp-bridge/go.sum
@@ -48,7 +48,7 @@ jobs:
         working-directory: whatsapp-mcp
     steps:
       - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-go@v7.0.0
+      - uses: actions/setup-go@v7.1.0
         with:
           go-version-file: whatsapp-mcp/go.mod
           cache-dependency-path: whatsapp-mcp/go.sum
